@@ -3,12 +3,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Local Development
+
 ```
 git clone https://github.com/rebay-8th-light-ebay-clone/rebay.git
 cd  into project directory
 npm install
 npm start
 ```
+
 ## Available Scripts
 
 In the project directory, you can run:
