@@ -33,9 +33,6 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Run Test and Coverage
-          command: npm test 
-      - run:
           name: Build Package
           command: npm run build
       - run:
