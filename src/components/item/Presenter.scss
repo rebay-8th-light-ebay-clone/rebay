@@ -1,0 +1,35 @@
+
+.item {
+  padding: 5em;
+  background-color: #f2f2f2;
+  display: inline-block;
+}
+
+img {
+  float: left;
+  width: 25%;
+  margin-right: 5%;
+  margin-left: 15%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.item-info {
+  float: left;
+  width: 40%;
+  text-align: left;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.item-bidding-info {
+  padding: .5em;
+  background-color: #cce6ff;
+}
+
+.item-description, .item-title {
+  margin: 2em;
+} 
+
+#description-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+}
