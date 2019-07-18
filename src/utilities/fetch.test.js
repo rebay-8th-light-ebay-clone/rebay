@@ -25,7 +25,7 @@ test('successful data fetching', async () => {
     expect.assertions(3);
     expect(axiosMock.get).toHaveBeenCalledTimes(1)
     expect(axiosMock.get).toHaveBeenCalledWith(url)
-    expect(fetchResult).toEqual(itemData.data.data)
+    expect(fetchResult).toEqual(itemData.data)
 })
 
 test('error data fetching', async () => {

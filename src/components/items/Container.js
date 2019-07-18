@@ -5,27 +5,30 @@ import ItemsPagePresenter from './Presenter';
 
 const ItemsPage = () => {
     const [items, setItems] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchItems = async () => {
             let result = await Fetch("/api/items");
-            setItems(result)
+            let { data, error } = result;
+            data ? setItems(data) : setError(error);
         }
         fetchItems();
     }, []);
 
     const createItemComponents = (data) => {
-        if (data) {
-            return data.map((object, index) => {
-                return <ItemCard item={object} key={index} />
-            });
-        } else {
-            return null;
-        }
+        return data.map((object, index) => {
+            return <ItemCard item={object} key={index} />
+        });
+    }
+
+    const handleError = (err) => {
+        return err && "Error: " + err.message;
     }
 
     return (
         <ItemsPagePresenter>
+            {handleError(error)}
             {createItemComponents(items)}
         </ItemsPagePresenter>
     )
