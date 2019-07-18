@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ItemsPage from 'views/ItemsPage';
-import ItemPage from 'views/ItemPage';
+import ItemsPage from 'components/items/Container.js';
 import './App.scss';
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
       <Router>
         <Route path="/" exact component={ItemsPage} />
         <Route path="/items" exact component={ItemsPage} />
-        <Route path="/item/:id" exact component={ItemPage} />
       </Router>
     </div>
   );
