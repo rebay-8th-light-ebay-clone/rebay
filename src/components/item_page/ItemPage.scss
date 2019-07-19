@@ -7,8 +7,8 @@
   display: inline-block;
 
   display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
 
   img {
     grid-column: 1 / 2;
@@ -41,5 +41,19 @@
   
   #description-header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+  }
+}
+
+@media (max-width: 1080px) {
+  .item--container {
+      grid-template-columns: repeat(1, 1fr);
+
+      img {
+        grid-column: 1 / -1;
+      }
+
+      .item-info {
+        grid-column: 1 / -1;
+      }
   }
 }

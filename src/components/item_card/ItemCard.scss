@@ -10,11 +10,11 @@
 .item--card-container {
     min-height: 350px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "image image"
-                         "image image"
-                         "title title"
-                         "end_date price";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "image image image"
+                         "image image image"
+                         "title title title"
+                         "end_date end_date price";
     justify-items: center;
     align-items: start;
 
@@ -47,6 +47,7 @@
         align-self: center;
         color: $med-grey;
         font-weight: 600;
+        text-align: left;
     }
 }
 
