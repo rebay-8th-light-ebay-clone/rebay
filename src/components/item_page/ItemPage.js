@@ -1,9 +1,9 @@
 import React from 'react';
-import './Presenter.scss';
+import './ItemPage.scss';
 import Page from 'components/UI/Page';
 import { countdown } from 'utilities/date';
 
-export const Item = ({ item }) => {
+export const ItemPage = ({ item }) => {
   let { id, title, description, price, end_date, image } = item;
   return (
     <Page>

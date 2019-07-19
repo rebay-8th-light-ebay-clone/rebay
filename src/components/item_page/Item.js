@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Item } from './Presenter';
+import { ItemPage } from './ItemPage';
 import Fetch from 'utilities/fetch';
 
-const ItemContainer = (props) => {
+const Item = (props) => {
   const [item, setItem] = useState({})
 
   useEffect(() => {
@@ -16,9 +16,9 @@ const ItemContainer = (props) => {
 
   return (
     item.hasOwnProperty('id') ?
-      <Item item={item} /> :
+      <ItemPage item={item} /> :
       null
   );
 }
 
-export default ItemContainer;
+export default Item;

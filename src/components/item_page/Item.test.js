@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemContainer from './Container.js';
+import Item from './Item';
 import { cleanup, render, waitForElement } from '@testing-library/react';
 import axios from '__mocks__/axios';
 
@@ -27,7 +27,7 @@ describe('ItemsPage Test', () => {
 
   test('renders an item with the correct data', async () => {
     axios.get.mockResolvedValueOnce(itemData)
-    const component = render(<ItemContainer match={{ params: { id: 1 } }} />);
+    const component = render(<Item match={{ params: { id: 1 } }} />);
     await waitForElement(() =>
       component.findAllByText('test title')
     )
