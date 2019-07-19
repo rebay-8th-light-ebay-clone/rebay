@@ -34,7 +34,7 @@ describe('ItemsPage Test', () => {
 
     component.getByAltText('test title')
     component.getByText('test description');
-    component.getByText('2019-07-17T16:53:52Z');
+    component.getByText(/hr|This Auction Has Ended/);
     component.getByText('Current Bid: $10');
     component.getByText('test title');
   })
