@@ -3,10 +3,11 @@ import './ItemPage.scss';
 import Page from 'components/UI/Page';
 import { countdown } from 'utilities/date';
 
-export const ItemPage = ({ item }) => {
+export const ItemPage = ({ item, error }) => {
   let { id, title, description, price, end_date, image } = item;
   return (
     <Page>
+      <section className="error">{error}</section>
       <section className="item" id={`item-${id}`}>
         <img id={`item-image-${id}`} src={image} alt={title} />
         <div className={`item-info`}>
