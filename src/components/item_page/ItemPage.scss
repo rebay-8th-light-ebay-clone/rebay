@@ -1,35 +1,45 @@
+@import 'styles/_shared.scss';
 
-.item {
-  padding: 5em;
-  background-color: #f2f2f2;
+.item--container {
+  box-sizing: border-box;
+  max-width: $max-width;
+  margin: 20px auto;
   display: inline-block;
-}
 
-img {
-  float: left;
-  width: 25%;
-  margin-right: 5%;
-  margin-left: 15%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
 
-.item-info {
-  float: left;
-  width: 40%;
-  text-align: left;
-  background: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.item-bidding-info {
-  padding: .5em;
-  background-color: #cce6ff;
-}
-
-.item-description, .item-title {
-  margin: 2em;
-} 
-
-#description-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+  img {
+    grid-column: 1 / 2;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+  }
+  
+  .item-info {
+    grid-column: 2 / -1;
+    text-align: left;
+    background: white;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+  }
+  
+  .item-bidding-info {
+    padding: 30px;
+    background-color: $theme-color--light;
+    font-weight: 600;
+  }
+  
+  .item-description, .item-title {
+    margin: 2em;
+    line-height: 28px;
+  } 
+  
+  #description-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+  }
 }

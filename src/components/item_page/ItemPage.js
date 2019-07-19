@@ -8,7 +8,7 @@ export const ItemPage = ({ item, error }) => {
   return (
     <Page>
       <section className="error">{error}</section>
-      <section className="item" id={`item-${id}`}>
+      <section className="item--container" id={`item-${id}`}>
         <img id={`item-image-${id}`} src={image} alt={title} />
         <div className={`item-info`}>
           <div className="item-title">
