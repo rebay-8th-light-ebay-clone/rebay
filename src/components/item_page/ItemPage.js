@@ -1,7 +1,7 @@
 import React from 'react';
 import './ItemPage.scss';
 import Page from 'components/UI/Page';
-import { countdown } from 'utilities/date';
+import { timeRemainingFromNowMessage } from 'utilities/date';
 
 export const ItemPage = ({ item, error }) => {
   let { id, title, description, price, end_date, image } = item;
@@ -16,7 +16,7 @@ export const ItemPage = ({ item, error }) => {
           </div>
           <div className="item-bidding-info">
             <span id={`item-price-${price}`}>Current Bid: ${price}</span><br />
-            <span id={`item-end-date-${end_date}`}>{countdown(new Date(), new Date(end_date))}</span><br />
+            <span id={`item-end-date-${end_date}`}>{timeRemainingFromNowMessage(new Date(end_date))}</span><br />
           </div>
 
           <div className="item-description">

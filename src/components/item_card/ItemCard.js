@@ -1,5 +1,9 @@
 import React from 'react';
 import './ItemCard.scss';
+<<<<<<< HEAD
+=======
+import { timeRemainingFromNowMessage } from 'utilities/date';
+>>>>>>> Refactor date utility.
 
 const ItemCard = ({ item }) => {
     let { title, price, image, end_date, id } = item;
@@ -9,7 +13,7 @@ const ItemCard = ({ item }) => {
             <section className='card item--card-container'>
                 <h1>{title}</h1>
                 <h2>${price}</h2>
-                <p>{countdown(new Date(), new Date(end_date))}</p>
+                <p>{timeRemainingFromNowMessage(new Date(end_date))}</p>
                 <img src={image} alt={title} />
             </section>
         </a>
