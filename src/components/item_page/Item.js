@@ -8,8 +8,7 @@ const Item = (props) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      let result = await Fetch(`/api/items/${props.match.params.id}`);
-      let { data, error } = result;
+      const { data, error } = await Fetch(`/api/items/${props.match.params.id}`);
       data ? setItem(data) : setError(error);
     }
     fetchItems();
@@ -17,7 +16,7 @@ const Item = (props) => {
 
 
   const handleError = (err) => {
-    return err && "Error: " + err.message;
+    return err && `Error: ${err.message}`;
   }
 
   return (

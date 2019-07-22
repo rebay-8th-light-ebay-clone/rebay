@@ -6,7 +6,7 @@ import { timeRemainingFromNowMessage } from 'utilities/date';
 >>>>>>> Refactor date utility.
 
 const ItemCard = ({ item }) => {
-    let { title, price, image, end_date, id } = item;
+    const { title, price, image, end_date, id } = item;
 
     return (
         <a href={`/items/${id}`}>

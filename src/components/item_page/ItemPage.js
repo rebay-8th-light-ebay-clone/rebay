@@ -4,7 +4,7 @@ import Page from 'components/UI/Page';
 import { timeRemainingFromNowMessage } from 'utilities/date';
 
 export const ItemPage = ({ item, error }) => {
-  let { id, title, description, price, end_date, image } = item;
+  const { id, title, description, price, end_date, image } = item;
   return (
     <Page>
       <section className="error">{error}</section>
