@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemsPage from 'components/items/Container';
+import ItemsPage from 'components/all_items_page/Items';
 import {
     render,
     waitForElement,
@@ -9,7 +9,7 @@ import APIHandler from 'utilities/apiHandler';
 import MockFetcher from 'utilities/mockFetcher';
 jest.unmock('axios')
 
-describe('ItemsPage Test', () => {
+describe('Items Test', () => {
     afterEach(() => {
         cleanup();
     })

@@ -1,8 +1,8 @@
 import React from 'react';
 import Page from 'components/UI/Page';
-import './Presenter.scss';
+import './ItemsPage.scss';
 
-const ItemsPagePresenter = (props) => (
+const ItemsPage = (props) => (
     <Page>
         <h1>
             Items Page
@@ -13,4 +13,4 @@ const ItemsPagePresenter = (props) => (
     </Page>
 )
 
-export default ItemsPagePresenter;
+export default ItemsPage;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ItemCard from '../item_card/Presenter';
-import ItemsPagePresenter from './Presenter';
+import ItemCard from '../item_card/ItemCard';
+import ItemsPage from './ItemsPage';
 
-const ItemsPage = ({ apiHandler }) => {
+const Items = ({ apiHandler }) => {
     const [items, setItems] = useState([]);
     const [error, setError] = useState(null);
 
@@ -25,11 +25,11 @@ const ItemsPage = ({ apiHandler }) => {
     }
 
     return (
-        <ItemsPagePresenter>
+        <ItemsPage>
             {handleError(error)}
             {createItemComponents(items)}
-        </ItemsPagePresenter>
+        </ItemsPage>
     )
 }
 
-export default ItemsPage;
+export default Items;

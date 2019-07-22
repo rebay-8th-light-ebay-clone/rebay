@@ -1,5 +1,5 @@
 import React from 'react';
-import './Presenter.scss';
+import './ItemCard.scss';
 
 const ItemCard = ({ item }) => {
     let { title, price, image, end_date } = item;

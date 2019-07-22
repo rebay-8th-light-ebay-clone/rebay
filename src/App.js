@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ItemsPage from 'components/items/Container.js';
+import ItemsPage from 'components/all_items_page/Items.js';
 import APIHandler from './utilities/apiHandler';
 import Fetcher from './utilities/fetcher';
 import './App.scss';
