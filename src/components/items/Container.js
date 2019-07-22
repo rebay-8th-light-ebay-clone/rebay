@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import Fetch from 'utilities/fetch';
 import ItemCard from '../item_card/Presenter';
 import ItemsPagePresenter from './Presenter';
 
-const ItemsPage = () => {
+const ItemsPage = ({ apiHandler }) => {
     const [items, setItems] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchItems = async () => {
-            let result = await Fetch("/api/items");
-            let { data, error } = result;
+            const { data, error } = await apiHandler.get("/api/items");
             data ? setItems(data) : setError(error);
         }
         fetchItems();
-    }, []);
+    }, [apiHandler]);
 
     const createItemComponents = (data) => {
         return data.map((object) => {
