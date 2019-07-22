@@ -17,8 +17,8 @@ const ItemsPage = () => {
     }, []);
 
     const createItemComponents = (data) => {
-        return data.map((object, index) => {
-            return <ItemCard item={object} key={index} />
+        return data.map((object) => {
+            return <ItemCard item={object} key={object.id} />
         });
     }
 
