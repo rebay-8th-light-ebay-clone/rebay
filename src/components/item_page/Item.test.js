@@ -1,13 +1,10 @@
 import React from 'react';
 import Item from './Item';
 import { cleanup, render, waitForElement } from '@testing-library/react';
-import axios from '__mocks__/axios';
+import APIHandler from 'utilities/apiHandler';
+import MockFetcher from 'utilities/mockFetcher';
 
 describe('ItemsPage Test', () => {
-  beforeEach(() => {
-    jest.mock('axios');
-  })
-
   afterEach(() => {
     cleanup();
   })
@@ -26,8 +23,8 @@ describe('ItemsPage Test', () => {
   };
 
   test('renders an item with the correct data', async () => {
-    axios.get.mockResolvedValueOnce(itemData)
-    const component = render(<Item match={{ params: { id: 1 } }} />);
+    const apiHandler = new APIHandler(new MockFetcher(itemData));
+    const component = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />);
 
     await waitForElement(() =>
       component.findAllByText('test title')
@@ -46,8 +43,8 @@ describe('ItemsPage Test', () => {
         "message": "Invalid fetch"
       }
     };
-    axios.get.mockRejectedValue(error)
-    const { findByText } = render(<Item match={{ params: { id: 1 } }} />)
+    const apiHandler = new APIHandler(new MockFetcher(error));
+    const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />)
     const errorItem = await waitForElement(() =>
       findByText("Error: Invalid fetch")
     )

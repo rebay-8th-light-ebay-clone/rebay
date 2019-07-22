@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ItemPage } from './ItemPage';
-import Fetch from 'utilities/fetch';
 
 const Item = (props) => {
   const [item, setItem] = useState({});
@@ -8,7 +7,7 @@ const Item = (props) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const { data, error } = await Fetch(`/api/items/${props.match.params.id}`);
+      const { data, error } = await props.apiHandler.get(`/api/items/${props.match.params.id}`);
       data ? setItem(data) : setError(error);
     }
     fetchItems();

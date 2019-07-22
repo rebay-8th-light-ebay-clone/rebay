@@ -1,10 +1,6 @@
 import React from 'react';
 import Page from 'components/UI/Page';
 import './ItemsPage.scss';
-<<<<<<< HEAD:src/components/all_items_page/ItemsPage.js
-=======
-import './ItemsPage';
->>>>>>> Rename files and folders to be more intuitive:src/components/all_items_page/ItemsPage.js
 
 const ItemsPage = (props) => (
     <Page>

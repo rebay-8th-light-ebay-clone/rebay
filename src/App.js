@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
-        <Route path="/items/:id" exact component={Item} />
+        <Route path="/items/:id" exact render={props => <Item apiHandler={apiHandler} {...props} />} />
       </Router>
     </div>
   );
