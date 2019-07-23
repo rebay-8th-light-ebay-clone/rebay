@@ -15,6 +15,7 @@ const Login = ({ apiHandler }) => {
         if (data) {
             console.log(data);
             localStorage.setItem("token", data.token)
+            localStorage.setItem("user", data.user)
         } else {
             onFailure(error)
         }
@@ -43,6 +44,7 @@ const Login = ({ apiHandler }) => {
     return (
         <Page background={'theme'}>
             <section className='login--container'>
+                <h1>Log In With Google</h1>
                 <div id={GOOGLE_BUTTON_ID} />
             </section>
         </Page>

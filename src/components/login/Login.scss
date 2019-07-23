@@ -6,7 +6,13 @@
     padding: 40px 30px;
     border-radius: 6px;
     box-shadow: $box-shadow-blue;
-    margin: 20% auto;
+    margin: 100px auto;
     justify-items: center;
     align-items: center;
+
+    h1 {
+        text-align: center;
+        color: $dark-grey;
+        margin-top: -10px;
+    }
 }

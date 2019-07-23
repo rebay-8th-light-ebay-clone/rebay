@@ -5,15 +5,14 @@ import Fetcher from './utilities/fetcher';
 import Items from 'components/all_items_page/Items';
 import Item from 'components/item_page/Item';
 import Login from 'components/login/Login';
+import Header from 'components/header/Header';
 import './App.scss';
 
 export const UnauthenticatedApp = (props) => {
   const apiHandler = new APIHandler(new Fetcher());
   return (
     <div className="App">
-      <header className="header">
-        <a href="/">Rebay</a>
-      </header>
+      <Header user={localStorage.getItem("user")} />
       <Router>
         <Route path="/login" exact render={() => <Login apiHandler={apiHandler} />} />
         <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
