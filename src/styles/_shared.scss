@@ -29,6 +29,7 @@ $palest-grey: #f8f8f8;
 
 $theme-color: #2186EB;
 $theme-color--light: #E5F6FF;
+$theme-color--dark: rgb(29, 125, 221);
 $page-background: #F5F7FA;
 
 /*
@@ -38,6 +39,7 @@ STYLING
 */
 $page-padding: 20px;
 $box-shadow: 0px 3px 6px $light-grey;
+$box-shadow-blue: 0px 3px 6px $theme-color--dark;
 $max-width: 1180px;
 
 /*

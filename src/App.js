@@ -4,6 +4,7 @@ import APIHandler from './utilities/apiHandler';
 import Fetcher from './utilities/fetcher';
 import Items from 'components/all_items_page/Items';
 import Item from 'components/item_page/Item';
+import Login from 'components/login/Login';
 import './App.scss';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <a href="/">Rebay</a>
       </header>
       <Router>
+        <Route path="/login" exact render={() => <Login apiHandler={apiHandler} />} />
         <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items/:id" exact render={props => <Item apiHandler={apiHandler} {...props} />} />

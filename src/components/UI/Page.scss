@@ -7,6 +7,10 @@
     overflow-y: hidden;
 }
 
+.page--theme {
+    background-color: $theme-color;
+}
+
 @media (max-width: 600px) {
     .page {
         padding: 20px 40px;

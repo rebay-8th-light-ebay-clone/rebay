@@ -7,6 +7,11 @@ class MockFetcher {
         const resolvedData = this.data.error ? this.data : this.data.data;
         return Promise.resolve(resolvedData);
     }
+
+    post = async (endpoint, data) => {
+        const resolvedData = this.data.error ? this.data : this.data.data;
+        return Promise.resolve(resolvedData);
+    }
 }
 
 export default MockFetcher;

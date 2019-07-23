@@ -8,8 +8,13 @@ class APIHandler {
     }
 
     get = async (endpoint) => {
-        const data = await this.fetcher.get(endpoint);
-        return data;
+        const result = await this.fetcher.get(endpoint);
+        return result;
+    }
+
+    post = async (endpoint, data) => {
+        const result = await this.fetcher.post(endpoint, data);
+        return result;
     }
 }
 

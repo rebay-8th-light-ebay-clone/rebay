@@ -17,6 +17,20 @@ class Fetcher {
                 return error;
             });
     }
+
+    post = async (endpoint, data) => {
+        return axios.post(
+            encodeURI(endpoint), 
+            data
+        )
+        .then(function (response) {
+            return response.data;
+        })
+        .catch(function (error) {
+            console.log(error)
+            return error;
+        });
+    }
 }
 
 export default Fetcher;
