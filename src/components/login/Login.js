@@ -12,7 +12,12 @@ const Login = ({ apiHandler }) => {
             email: profile.getEmail(),
             provider: 'google'
         });
-        console.log(data);
+        if (data) {
+            console.log(data);
+            localStorage.setItem("token", data.token)
+        } else {
+            onFailure(error)
+        }
     }
 
     const onFailure = (error) => {

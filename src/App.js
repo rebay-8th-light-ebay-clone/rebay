@@ -7,7 +7,7 @@ import Item from 'components/item_page/Item';
 import Login from 'components/login/Login';
 import './App.scss';
 
-function App() {
+export const UnauthenticatedApp = (props) => {
   const apiHandler = new APIHandler(new Fetcher());
   return (
     <div className="App">
@@ -19,9 +19,16 @@ function App() {
         <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items/:id" exact render={props => <Item apiHandler={apiHandler} {...props} />} />
+        {props.children}      
       </Router>
     </div>
   );
 }
 
-export default App;
+export const AuthenticatedApp = () => {
+  return (
+    <UnauthenticatedApp>
+      <Route path="/user/:uuid/bid/new" />
+    </UnauthenticatedApp>
+  )
+}
