@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import APIHandler from './utilities/apiHandler';
-import Fetcher from './utilities/fetcher';
+import APIHandler from './utilities/APIHandler/apiHandler';
+import Fetcher from './utilities/APIHandler/fetcher';
 import Items from 'components/all_items_page/Items';
 import Item from 'components/item_page/Item';
 import Login from 'components/login/Login';

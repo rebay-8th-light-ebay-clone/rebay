@@ -1,8 +1,8 @@
 import React from 'react';
 import Item from './Item';
 import { cleanup, render, waitForElement } from '@testing-library/react';
-import APIHandler from 'utilities/apiHandler';
-import MockFetcher from 'utilities/mockFetcher';
+import APIHandler from 'utilities/APIHandler/apiHandler';
+import MockFetcher from 'utilities/APIHandler/mockFetcher';
 
 describe('ItemsPage Test', () => {
   afterEach(() => {

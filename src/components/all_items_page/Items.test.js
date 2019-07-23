@@ -5,8 +5,8 @@ import {
     waitForElement,
     cleanup
 } from '@testing-library/react'
-import APIHandler from 'utilities/apiHandler';
-import MockFetcher from 'utilities/mockFetcher';
+import APIHandler from 'utilities/APIHandler/apiHandler';
+import MockFetcher from 'utilities/APIHandler/mockFetcher';
 
 jest.unmock('axios')
 

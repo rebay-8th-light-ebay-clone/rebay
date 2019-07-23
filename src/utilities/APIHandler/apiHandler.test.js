@@ -1,6 +1,6 @@
-import APIHandler from 'utilities/apiHandler';
-import Fetcher from 'utilities/fetcher';
-import MockFetcher from 'utilities/mockFetcher';
+import APIHandler from 'utilities/APIHandler/apiHandler';
+import Fetcher from 'utilities/APIHandler/fetcher';
+import MockFetcher from 'utilities/APIHandler/mockFetcher';
 jest.unmock('axios')
 
 test('APIHandler can use Fetcher or MockFetcher', () => {
