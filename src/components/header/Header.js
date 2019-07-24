@@ -14,19 +14,17 @@ const BasicHeader = (props) => (
 
 const AuthenticatedHeader = ({ user, setUser }) => {
     const logOut = (e) => {
-        // var auth2 = window.gapi.auth2.getAuthInstance();
-        // auth2.signOut().then(function () {
-        //   console.log('User signed out.');
-        // });
         localStorage.removeItem("user")
         localStorage.removeItem("token")
         setUser(null);
     }
 
+    const userAvatar = user.avatar ? user.avatar : "https://ggrmlawfirm.com/wp-content/uploads/avatar-placeholder.png";
+
     return (
         <BasicHeader>
             <button className='btn--tertiary' onClick={(e) => logOut(e)}>Log Out</button>
-            <img className='avatar' alt="avatar" src="https://ggrmlawfirm.com/wp-content/uploads/avatar-placeholder.png" />
+            <img className='avatar' alt="avatar" src={userAvatar} />
         </BasicHeader>
     )
 }

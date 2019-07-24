@@ -15,4 +15,19 @@
         color: $dark-grey;
         margin-top: -10px;
     }
+
+    .google-btn {
+        background-color: $theme-color;
+        border: none;
+        box-shadow: $box-shadow;
+        padding: 20px;
+        width: 100%;
+        cursor: pointer;
+        
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        text-transform: capitalize;
+    }
 }

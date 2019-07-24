@@ -10,11 +10,13 @@ import './App.scss';
 
 export const UnauthenticatedApp = (props) => {
   const apiHandler = new APIHandler(new Fetcher());
+
   return (
     <div className="App">
-      <Header user={localStorage.getItem("user")} />
+      <Header user={JSON.parse(localStorage.getItem("user"))} />
       <Router>
-        <Route path="/login" exact render={() => <Login apiHandler={apiHandler} />} />
+        <Route path="/login/:uuid" exact render={(props) => <Login apiHandler={apiHandler} {...props} />} />
+        <Route path="/login" exact render={(props) => <Login apiHandler={apiHandler} {...props} />} />
         <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items/:id" exact render={props => <Item apiHandler={apiHandler} {...props} />} />

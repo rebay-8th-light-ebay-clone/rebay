@@ -1,55 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router'
 import Page from 'components/UI/Page';
 import './Login.scss';
 
-const Login = ({ apiHandler }) => {
-    const onSuccess = async (googleUser) => {
-        var profile = googleUser.getBasicProfile();
-        const { data, error } = await apiHandler.post("/auth/google/callback", {
-            token: googleUser.getAuthResponse().id_token,
-            first_name: profile.getGivenName(),
-            avatar: profile.getImageUrl(),
-            email: profile.getEmail(),
-            provider: 'google'
-        });
-        if (data) {
-            console.log(data);
-            localStorage.setItem("token", data.token)
-            localStorage.setItem("user", data.user)
-        } else {
-            onFailure(error)
-        }
-    }
-
-    const onFailure = (error) => {
-        console.log(error);
-    }
-
-    const GOOGLE_BUTTON_ID = 'google-sign-in-button';
+const Login = (props, { apiHandler }) => {
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(false)
 
     useEffect(() => {
-        return window.gapi.signin2.render(
-            GOOGLE_BUTTON_ID,
-            {
-                width: 380,
-                height: 50,
-                onsuccess: onSuccess,
-                onerror: onFailure,
-                longline: true,
-                theme: 'dark'
-            },
-        );
-    })
+        const { uuid } = props.match.params;
+        const fetchUser = async () => {
+            const { data, error } = await apiHandler.get(`/api/users/${uuid}`);
+            if (data) {
+                localStorage.setItem("user", JSON.stringify(data))
+                setSuccess(true)
+            } else {
+                setError(error);
+            }
+        }
+        if (uuid) {
+            fetchUser();
+        }
+    }, [props.match.params, apiHandler])
 
-    return (
-        <Page background={'theme'}>
-            <section className='login--container'>
-                <h1>Log In With Google</h1>
-                <div id={GOOGLE_BUTTON_ID} />
-            </section>
-        </Page>
-    )
+    const handleError = (err) => {
+        return err && `Error: ${err.message}`;
+    }
 
+    if (success) {
+        return <Redirect to="/" />
+    } else {
+        return (
+            <Page background={'theme'}>
+                {handleError(error)}
+                <section className='login--container'>
+                    <h1>Log In</h1>
+                    <a className='google-btn-link' href="http://localhost:4000/auth/google?scope=email%20profile">
+                        <button className='google-btn'>Log In With google</button>
+                    </a>
+                </section>
+            </Page>
+        )
+    }
 }
 
 export default Login;
