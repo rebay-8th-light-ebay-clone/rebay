@@ -4,19 +4,16 @@ import { UnauthenticatedApp, AuthenticatedApp } from './App';
 import { Route, MemoryRouter } from "react-router-dom";
 import { render, cleanup } from '@testing-library/react'
 
-jest.unmock('axios')
-
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<UnauthenticatedApp />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
-
 it('UnauthenticatedApp can render child routes', () => {
   const testPage = (
     <UnauthenticatedApp>
-      <MemoryRouter initialEntries={["/", "/test"]} initialIndex={1}>
+      <MemoryRouter initialEntries={["/test"]} initialIndex={0}>
           <Route path="/test" exact render={() => <div>Test Page</div>} />
       </MemoryRouter >
     </UnauthenticatedApp>
