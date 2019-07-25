@@ -1,0 +1,60 @@
+@import 'styles/_shared.scss';
+
+.card {
+    background-color: white;
+    padding: 20px;
+    box-shadow: $box-shadow;
+    border-radius: 6px;
+}
+
+.item--card-container {
+    min-height: 350px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "image image"
+                         "image image"
+                         "title title"
+                         "end_date price";
+    justify-items: center;
+    align-items: start;
+
+    h1 {
+        grid-area: title;
+        font-size: 16px !important;
+        min-height: 60px;
+    }
+
+    h2 {
+        grid-area: price;
+        font-size: 25px !important;
+        color: $theme-color;
+        justify-self: end;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    img {
+        grid-area: image;
+        object-fit: contain;
+        width: auto;
+        height: 250px;
+    }
+
+    p {
+        grid-area: end_date;
+        margin: 0px;
+        justify-self: start;
+        align-self: center;
+        color: $med-grey;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 1080px) {
+    .item--card-container {
+        image {
+            height: 100%;
+            width: auto;
+        }
+    }
+}
