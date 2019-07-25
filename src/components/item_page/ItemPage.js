@@ -1,7 +1,7 @@
 import React from 'react';
 import './ItemPage.scss';
-import Page from 'components/UI/Page';
-import { timeRemainingFromNowMessage } from 'utilities/date';
+import Page from '../UI/Page';
+import { timeRemainingFromNowMessage } from '../../utilities/date';
 
 export const ItemPage = ({ item, error }) => {
   const { id, title, description, price, end_date, image } = item;

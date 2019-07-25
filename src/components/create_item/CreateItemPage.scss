@@ -1,0 +1,22 @@
+@import 'styles/_shared.scss';
+
+label,
+input,
+textarea,
+select {
+  display: block;
+}
+
+label {
+  text-align: left;
+}
+
+form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.error {
+  color:red;
+  text-align: left;
+}
