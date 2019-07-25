@@ -32,7 +32,7 @@ describe('Item Page Test', () => {
     component.getByAltText('test title')
     component.getByText('test description');
     component.getByText(/hr|This Auction Has Ended/);
-    component.getByText('Current Bid: $10');
+    component.getByText('Current Bid: $0.10');
     component.getByText('test title');
   })
 

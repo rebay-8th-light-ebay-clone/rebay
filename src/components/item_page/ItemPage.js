@@ -2,6 +2,7 @@ import React from 'react';
 import './ItemPage.scss';
 import Page from '../UI/Page';
 import { timeRemainingFromNowMessage } from '../../utilities/date';
+import { pennyToDollarConverter } from 'utilities/price';
 
 export const ItemPage = ({ item, error }) => {
   const { id, title, description, price, end_date, image } = item;
@@ -15,7 +16,7 @@ export const ItemPage = ({ item, error }) => {
             <span id={`item-title-${title}`}><strong>{title}</strong></span>
           </div>
           <div className="item-bidding-info">
-            <span id={`item-price-${price}`}>Current Bid: ${price}</span><br />
+            <span id={`item-price-${price}`}>Current Bid: ${pennyToDollarConverter(price)}</span><br />
             <span id={`item-end-date-${end_date}`}>{timeRemainingFromNowMessage(new Date(end_date))}</span><br />
           </div>
 
