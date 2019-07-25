@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ItemsPage from 'components/all_items_page/Items.js';
 import APIHandler from './utilities/apiHandler';
 import Fetcher from './utilities/fetcher';
+import Items from 'components/all_items_page/Items';
+import Item from 'components/item_page/Item';
 import './App.scss';
 
 function App() {
@@ -10,11 +11,12 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        Rebay
+        <a href="/">Rebay</a>
       </header>
       <Router>
-        <Route path="/" exact render={() => <ItemsPage apiHandler={apiHandler} />} />
-        <Route path="/items" exact render={() => <ItemsPage apiHandler={apiHandler} />} />
+        <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
+        <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
+        <Route path="/items/:id" exact render={props => <Item apiHandler={apiHandler} {...props} />} />
       </Router>
     </div>
   );

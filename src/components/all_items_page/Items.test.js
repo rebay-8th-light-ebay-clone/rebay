@@ -7,13 +7,14 @@ import {
 } from '@testing-library/react'
 import APIHandler from 'utilities/apiHandler';
 import MockFetcher from 'utilities/mockFetcher';
+
 jest.unmock('axios')
 
 describe('Items Test', () => {
     afterEach(() => {
         cleanup();
     })
-    
+
     test('iterate over items data and generates item components', async () => {
         const itemData = {
             "data": {
@@ -42,12 +43,12 @@ describe('Items Test', () => {
         const apiHandler = new APIHandler(new MockFetcher(itemData));
         const { findAllByText } = render(<ItemsPage apiHandler={apiHandler} />)
         const renderedItems = await waitForElement(() =>
-                findAllByText('item')
+            findAllByText('item')
         )
 
         expect(renderedItems.length).toEqual(2)
     })
-    
+
     test('handles error response', async () => {
         const error = {
             "error": {

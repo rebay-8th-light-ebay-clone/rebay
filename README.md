@@ -32,6 +32,8 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Environmental Variables ($HEROKU_API_KEY and $HEROKU_APP_NAME) for Deployment are stored in CircleCI.
 
 ### Generate a new API Token
+Install the Heroku [CLI Tools](https://devcenter.heroku.com/articles/heroku-cli)
+
 `heroku authorizations:create`
 
 ### [Setting an Environment Variable in a CircleCI Project](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)

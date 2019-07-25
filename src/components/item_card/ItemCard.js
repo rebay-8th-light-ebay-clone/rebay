@@ -1,23 +1,19 @@
 import React from 'react';
 import './ItemCard.scss';
+import { timeRemainingFromNowMessage } from 'utilities/date';
 
 const ItemCard = ({ item }) => {
-    let { title, price, image, end_date } = item;
-    const dateFormatter = (endDate) => {
-        let endDateTimestamp = new Date(endDate);
-        let currentTimestamp = new Date();
-        let dayDifference = currentTimestamp.getDay() - endDateTimestamp.getDay();
-        let hourDifference = currentTimestamp.getHours() - endDateTimestamp.getHours();
-        
-        return `Ends in ${dayDifference} day ${hourDifference} hr`;
-    }
+    const { title, price, image, end_date, id } = item;
+
     return (
-        <section className='card item--card-container'>
-            <h1>{title}</h1>
-            <h2>${price}</h2>
-            <p>{dateFormatter(end_date)}</p>
-            <img src={image} alt={title} />
-        </section>
+        <a href={`/items/${id}`}>
+            <section className='card item--card-container'>
+                <h1>{title}</h1>
+                <h2>${price}</h2>
+                <p>{timeRemainingFromNowMessage(new Date(end_date))}</p>
+                <img src={image} alt={title} />
+            </section>
+        </a>
     )
 }
 

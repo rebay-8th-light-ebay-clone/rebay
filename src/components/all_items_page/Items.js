@@ -21,7 +21,7 @@ const Items = ({ apiHandler }) => {
     }
 
     const handleError = (err) => {
-        return err && "Error: " + err.message;
+        return err && `Error: ${err.message}`;
     }
 
     return (

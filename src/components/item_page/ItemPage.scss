@@ -1,0 +1,59 @@
+@import 'styles/_shared.scss';
+
+.item--container {
+  box-sizing: border-box;
+  max-width: $max-width;
+  margin: 20px auto;
+  display: inline-block;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+
+  img {
+    grid-column: 1 / 2;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+  }
+  
+  .item-info {
+    grid-column: 2 / -1;
+    text-align: left;
+    background: white;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+  }
+  
+  .item-bidding-info {
+    padding: 30px;
+    background-color: $theme-color--light;
+    font-weight: 600;
+  }
+  
+  .item-description, .item-title {
+    margin: 2em;
+    line-height: 28px;
+  } 
+  
+  #description-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+  }
+}
+
+@media (max-width: 1080px) {
+  .item--container {
+      grid-template-columns: repeat(1, 1fr);
+
+      img {
+        grid-column: 1 / -1;
+      }
+
+      .item-info {
+        grid-column: 1 / -1;
+      }
+  }
+}
