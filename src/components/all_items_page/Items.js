@@ -25,7 +25,7 @@ const Items = ({ apiHandler }) => {
     }
 
     return (
-        <ItemsPage>
+        <ItemsPage title='Items Page'>
             {handleError(error)}
             {createItemComponents(items)}
         </ItemsPage>

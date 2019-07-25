@@ -1,3 +1,5 @@
+const { format } = require('date-fns');
+
 export function timeRemainingFromNowMessage(endDate) {
   return timeRemainingMessage(new Date(), endDate);
 }
@@ -59,4 +61,8 @@ function _diffInMinutes(startDate, endDate) {
   const dayDiffInSeconds = _diffInDays(startDate, endDate) * 86400;
   const hourDiffinSeconds = _diffInHours(startDate, endDate) * 3600;
   return Math.floor((secondsDiff - dayDiffInSeconds - hourDiffinSeconds) / 60);
+}
+
+export function dateFormatter(utc_datetime) {
+  return format(new Date(utc_datetime), 'MMM MM, YYYY HH:mm A')
 }

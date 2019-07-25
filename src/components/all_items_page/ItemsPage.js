@@ -5,7 +5,7 @@ import './ItemsPage.scss';
 const ItemsPage = (props) => (
     <Page>
         <h1>
-            Items Page
+            {props.title}
         </h1>
         <section className='items--container'>
             {props.children}

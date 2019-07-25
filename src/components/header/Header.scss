@@ -42,7 +42,7 @@
 
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 20px;
+    grid-gap: 30px;
     align-items: center;
 
     a {
@@ -61,5 +61,8 @@
     border: none;
     background-color: white;
     box-shadow: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: $dark-grey;
     cursor: pointer;
 }
