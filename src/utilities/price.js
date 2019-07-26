@@ -11,11 +11,4 @@ export const pennyToDollarConverter = (pennies) => {
     }
 }
 
-export const dollarToPennyConverter = (dollar) => {
-    let formattedDollar = (dollar + '').replace(/[^\d.-]/g, '');
-    if (formattedDollar && formattedDollar.includes('.')) {
-        formattedDollar = formattedDollar.substring(0, formattedDollar.indexOf('.') + 3);
-    }
-  
-    return formattedDollar ? Math.round(parseFloat(formattedDollar) * 100) : 0;
-}
+export const dollarToPennyConverter = price => Math.trunc(price * 100);

@@ -21,6 +21,24 @@ export function timeRemaining(startDate, endDate) {
   return [dayDifference, hourDifference, minuteDifference];
 }
 
+export const dayEndedUTCString = date => {
+  const entered_date = new Date(date);
+  const end_date = setDefaultTime(entered_date);
+  return end_date.toUTCString();
+}
+
+const setDefaultTime = date => {
+  const defaultEndHours = 23;
+  const defaultEndMinutes = 59;
+  const defaultEndSeconds = 59;
+
+  date.setHours(defaultEndHours);
+  date.setMinutes(defaultEndMinutes);
+  date.setSeconds(defaultEndSeconds);
+
+  return date;
+}
+
 function _diffInSeconds(startDate, endDate) {
   return (endDate - startDate) / 1000;
 }

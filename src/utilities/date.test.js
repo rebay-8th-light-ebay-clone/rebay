@@ -1,4 +1,4 @@
-import { timeRemaining, timeRemainingMessage } from './date';
+import { dayEndedUTCString, timeRemaining, timeRemainingMessage } from './date';
 
 describe('timeRemaining', () => {
   test('returns the remaining days hours, and minutes', () => {
@@ -63,3 +63,19 @@ describe('timeRemainingMessage', () => {
     expect(timeRemainingMessage(startDate, endDate)).toEqual(expectedMessage);
   });
 });
+
+describe('dayEndedUTCString', () => {
+  test('converts a date string ', () => {
+    const dateString = "01-01-2019";
+    const formattedDate = dayEndedUTCString(dateString);
+    const expectedDate = "Wed, 02 Jan 2019";
+    expect(formattedDate).toContain(expectedDate);
+  });
+
+  test('defaults time to end of day', () => {
+    const dateString = "01-01-2019";
+    const formattedDate = dayEndedUTCString(dateString);
+    const expectedTime = "07:59:59 GMT";
+    expect(formattedDate).toContain(expectedTime)
+  });
+})

@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: circleci/node:10
+    environment:
+      TZ: "America/Los_Angeles"
     steps:
       - checkout
       - restore_cache:
@@ -16,11 +18,13 @@ jobs:
             - ./node_modules
       - run:
           name: Run Test and Coverage
-          command: npm test 
+          command: npm test
   deploy:
     docker:
       - image: circleci/node:10
       - image: buildpack-deps:trusty
+    environment:
+      TZ: "America/Los_Angeles"
     steps:
       - checkout
       - restore_cache:
