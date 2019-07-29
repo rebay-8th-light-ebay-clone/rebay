@@ -14,6 +14,7 @@
     grid-template-areas: "image image image"
                          "image image image"
                          "title title title"
+                         "description description description"
                          "end_date end_date price";
     justify-items: center;
     align-items: start;
@@ -52,6 +53,21 @@
         color: $med-grey;
         font-weight: 600;
         text-align: left;
+    }
+
+    .item-description {
+        grid-area: description;
+        justify-self: start;
+        align-self: start;
+        color: $med-grey;
+        font-weight: 500;
+        text-align: left;
+        margin-top: -70px;
+        margin-bottom: 20px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
     }
 }
 

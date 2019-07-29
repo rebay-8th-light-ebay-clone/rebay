@@ -9,7 +9,7 @@ const UserBidCard = ({ item, bid }) => {
 
     return (
         <section className='user-bid--container'>
-            <ItemCard item={item} />
+            <ItemCard item={item} showDescription={true} />
             <section className='bid--container'>
                 <div className='bid--container-info'>
                     <h2>You Bid</h2>

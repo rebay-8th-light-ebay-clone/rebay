@@ -51,10 +51,25 @@
 }
 
 .avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: contain;
+    cursor: pointer;
+
+    .avatar-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: contain;
+    }
+
+    .dropdown {
+        position: absolute;
+        z-index: 20;
+        margin-top: 20px;
+        width: 120px;
+        margin-left: -80px;
+        padding: 10px 0px;
+        box-shadow: $box-shadow;
+        background-color: white;
+    }
 }
 
 .btn--tertiary {
@@ -65,4 +80,9 @@
     font-weight: 600;
     color: $dark-grey;
     cursor: pointer;
+    padding: 10px 20px;
+    width: 100%;
+    &:hover {
+        background-color: $theme-color--light;
+    }
 }

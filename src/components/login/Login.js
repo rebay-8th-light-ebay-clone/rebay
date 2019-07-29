@@ -7,7 +7,6 @@ import API_URL from 'utilities/apiEndpoint';
 const Login = (props) => {
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(false)
-
     useEffect(() => {
         const { uuid } = props.match.params;
         const fetchUser = async () => {
@@ -29,7 +28,7 @@ const Login = (props) => {
     }
 
     if (success) {
-        return <Redirect to="/" />
+        return <Redirect to={props.history.go(-2)} />
     } else {
         return (
             <Page background={'theme'}>

@@ -1,5 +1,12 @@
 @import 'styles/_shared.scss';
 
+
+.user-bid--container {
+    .item--card-container {
+        border-radius: 6px 6px 0px 0px;
+    }
+}
+
 .bid--container {
     background-color: $theme-color--med-light;
     box-shadow: $box-shadow;

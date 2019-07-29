@@ -6,7 +6,7 @@ const UserBidsDemo = (props) => {
     const [itemBids] = useState([
         {
             "item": {
-                "description": "Android Dolls",
+                "description": "Android Dolls, pristine condition. Free shipping.",
                 "end_date": "2019-07-17T16:53:52Z",
                 "id": 1,
                 "image": "https://fscl01.fonpit.de/userfiles/6727621/image/2016/ANDROID-M-N-O-P/AndroidPIT-Google-collectibles-w810h462.jpg",
@@ -23,7 +23,7 @@ const UserBidsDemo = (props) => {
         },
         {
             "item": {
-                "description": "LDK Game Console",
+                "description": "LDK Game Console, used condition. Will ship with original batteries and case.",
                 "end_date": "2019-10-17T16:53:52Z",
                 "id": 1,
                 "image": "http://cdn.shopify.com/s/files/1/0054/1225/7862/products/4_6519c366-6059-4f59-a653-0dd956aebd9e_1200x1200.jpg?v=1560477381",

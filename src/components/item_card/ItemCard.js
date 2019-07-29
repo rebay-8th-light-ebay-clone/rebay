@@ -4,7 +4,7 @@ import { timeRemainingFromNowMessage } from 'utilities/date';
 import { pennyToDollarConverter } from 'utilities/price';
 
 const ItemCard = ({ item, showDescription }) => {
-    const { title, price, image, end_date, uuid, user_uuid } = item;
+    const { title, price, image, end_date, uuid, user_uuid, description } = item;
     return (
         <a href={`users/${user_uuid}/items/${uuid}`}>
             <section className='card item--card-container'>
@@ -12,6 +12,7 @@ const ItemCard = ({ item, showDescription }) => {
                 <h2>${pennyToDollarConverter(price)}</h2>
                 <p>{timeRemainingFromNowMessage(new Date(end_date))}</p>
                 <img src={image} alt={title} />
+                { showDescription && <p className='item-description'>{description}</p>}
             </section>
         </a>
     )
