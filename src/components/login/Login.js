@@ -37,7 +37,7 @@ const Login = (props, { apiHandler }) => {
                 <section className='login--container'>
                     <h1>Log In</h1>
                     <a className='google-btn-link' href={`${API_URL}/auth/google?scope=email%20profile`}>
-                        <button className='google-btn'>Log In With google</button>
+                        <button className='google-btn'>Log In With Google</button>
                     </a>
                 </section>
             </Page>

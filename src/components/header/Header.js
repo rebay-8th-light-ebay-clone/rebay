@@ -13,17 +13,17 @@ const BasicHeader = (props) => (
 )
 
 const AuthenticatedHeader = ({ user, setUser }) => {
-    const logOut = (e) => {
+    const logOut = () => {
         localStorage.removeItem("user")
         localStorage.removeItem("token")
         setUser(null);
     }
 
-    const userAvatar = user.avatar ? user.avatar : "https://ggrmlawfirm.com/wp-content/uploads/avatar-placeholder.png";
+    const userAvatar = user.avatar || require('assets/avatar-placeholder.png');
 
     return (
         <BasicHeader>
-            <button className='btn--tertiary' onClick={(e) => logOut(e)}>Log Out</button>
+            <button className='btn--tertiary' onClick={logOut}>Log Out</button>
             <img className='avatar' alt="avatar" src={userAvatar} />
         </BasicHeader>
     )
