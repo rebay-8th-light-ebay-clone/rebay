@@ -1,8 +1,9 @@
+import API_URL from 'utilities/apiEndpoint';
 const axios = require('axios');
 
 class Fetcher {
     get = async (endpoint) => {
-        return axios.get(endpoint)
+        return axios.get(API_URL + endpoint)
             .then(response => response.data)
             .catch(error => {
                 // console.log(error)
@@ -12,7 +13,7 @@ class Fetcher {
 
     post = async (endpoint, data) => {
         return axios.post(
-            endpoint, 
+            API_URL + endpoint, 
             data
         )
         .then(response => response.data)

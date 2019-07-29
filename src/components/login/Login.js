@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router'
 import Page from 'components/UI/Page';
 import './Login.scss';
+import API_URL from 'utilities/apiEndpoint';
 
 const Login = (props, { apiHandler }) => {
     const [error, setError] = useState(null)
@@ -35,7 +36,7 @@ const Login = (props, { apiHandler }) => {
                 {handleError(error)}
                 <section className='login--container'>
                     <h1>Log In</h1>
-                    <a className='google-btn-link' href="http://localhost:4000/auth/google?scope=email%20profile">
+                    <a className='google-btn-link' href={`${API_URL}/auth/google?scope=email%20profile`}>
                         <button className='google-btn'>Log In With google</button>
                     </a>
                 </section>
