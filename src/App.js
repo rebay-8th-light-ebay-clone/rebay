@@ -19,7 +19,7 @@ export const UnauthenticatedApp = (props) => {
           <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
           <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
           <Route path="/items/new" exact render={() => <CreateItemPage />} />
-          <Route path="/items/:id" exact render={props => <Item apiHandler={apiHandler} {...props} />} />
+          <Route path="/users/:user_uuid/items/:uuid" exact render={props => <Item apiHandler={apiHandler} {...props} />} />
         </Switch>
         {props.children}
       </Router>

@@ -23,7 +23,7 @@ describe('Item Page Test', () => {
 
   test('renders an item with the correct data', async () => {
     const apiHandler = new MockAPIHandler(itemData);
-    const component = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />);
+    const component = render(<Item apiHandler={apiHandler} match={{ params: { uuid: 1 } }} />);
 
     await waitForElement(() =>
       component.findAllByText('test title')
@@ -43,7 +43,7 @@ describe('Item Page Test', () => {
       }
     };
     const apiHandler = new MockAPIHandler(error);
-    const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />)
+    const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { uuid: 1 } }} />)
     const errorItem = await waitForElement(() =>
       findByText("Error: Invalid fetch")
     )

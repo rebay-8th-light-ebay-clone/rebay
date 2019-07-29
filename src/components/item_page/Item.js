@@ -4,14 +4,15 @@ import { ItemPage } from './ItemPage';
 const Item = (props) => {
   const [item, setItem] = useState({});
   const [error, setError] = useState(null);
-
+  const { uuid, user_uuid } = props.match.params;
+  
   useEffect(() => {
     const fetchItems = async () => {
-      const { data, error } = await props.apiHandler.get(`/api/items/${props.match.params.id}`);
+      const { data, error } = await props.apiHandler.get(`/api/users/${user_uuid}/items/${uuid}`);
       data ? setItem(data) : setError(error);
     }
     fetchItems();
-  }, [item, props.apiHandler, props.match.params.id]);
+  }, [item, props.apiHandler, uuid, user_uuid]);
 
 
   const handleError = (err) => {
