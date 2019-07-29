@@ -1,4 +1,4 @@
-class MockFetcher {
+class MockAPIHandler {
     constructor(data) {
         this.data = data;
     }
@@ -14,4 +14,4 @@ class MockFetcher {
     }
 }
 
-export default MockFetcher;
+export default MockAPIHandler;

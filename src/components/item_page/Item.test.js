@@ -1,8 +1,7 @@
 import React from 'react';
 import Item from './Item';
 import { cleanup, render, waitForElement } from '@testing-library/react';
-import APIHandler from 'utilities/APIHandler/apiHandler';
-import MockFetcher from 'utilities/APIHandler/mockFetcher';
+import MockAPIHandler from 'utilities/APIHandler/mockApiHandler';
 
 describe('ItemsPage Test', () => {
   afterEach(() => {
@@ -23,7 +22,7 @@ describe('ItemsPage Test', () => {
   };
 
   test('renders an item with the correct data', async () => {
-    const apiHandler = new APIHandler(new MockFetcher(itemData));
+    const apiHandler = new MockAPIHandler(itemData);
     const component = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />);
 
     await waitForElement(() =>
@@ -43,7 +42,7 @@ describe('ItemsPage Test', () => {
         "message": "Invalid fetch"
       }
     };
-    const apiHandler = new APIHandler(new MockFetcher(error));
+    const apiHandler = new MockAPIHandler(error);
     const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />)
     const errorItem = await waitForElement(() =>
       findByText("Error: Invalid fetch")

@@ -1,20 +1,24 @@
+import API_URL from 'utilities/apiEndpoint';
+const axios = require('axios');
+
 class APIHandler {
-    constructor(fetcher) {
-        this.fetcher = fetcher;
-    }
-
-    getFetcher = () => {
-        return this.fetcher;
-    }
-
     get = async (endpoint) => {
-        const result = await this.fetcher.get(endpoint);
-        return result;
+        return axios.get(API_URL + endpoint)
+            .then(response => response.data)
+            .catch(error => {
+                return error;
+            });
     }
 
     post = async (endpoint, data) => {
-        const result = await this.fetcher.post(endpoint, data);
-        return result;
+        return axios.post(
+            API_URL + endpoint, 
+            data
+        )
+        .then(response => response.data)
+        .catch(error => {
+            return error;
+        });
     }
 }
 
