@@ -16,7 +16,7 @@ const Items = ({ apiHandler }) => {
 
     const createItemComponents = (data) => {
         return data.map((object) => {
-            return <ItemCard item={object} key={object.id} />
+            return <ItemCard item={object} key={object.uuid} />
         });
     }
 

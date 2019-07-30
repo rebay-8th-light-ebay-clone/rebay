@@ -5,24 +5,24 @@ import { timeRemainingFromNowMessage } from '../../utilities/date';
 import { pennyToDollarConverter } from 'utilities/price';
 
 export const ItemPage = ({ item, error }) => {
-  const { id, title, description, price, end_date, image } = item;
+  const { title, description, price, end_date, image } = item;
   return (
     <Page>
       <section className="error">{error}</section>
-      <section className="item--container" id={`item-${id}`}>
-        <img id={`item-image-${id}`} src={image} alt={title} />
+      <section className="item--container">
+        <img src={image} alt={title} />
         <div className={`item-info`}>
           <div className="item-title">
-            <span id={`item-title-${title}`}><strong>{title}</strong></span>
+            <span><strong>{title}</strong></span>
           </div>
           <div className="item-bidding-info">
-            <span id={`item-price-${price}`}>Current Bid: ${pennyToDollarConverter(price)}</span><br />
-            <span id={`item-end-date-${end_date}`}>{timeRemainingFromNowMessage(new Date(end_date))}</span><br />
+            <span>Current Bid: ${pennyToDollarConverter(price)}</span><br />
+            <span>{timeRemainingFromNowMessage(new Date(end_date))}</span><br />
           </div>
 
           <div className="item-description">
             <h4 id="description-header">Product Description</h4>
-            <span id={`item-description-${description}`}>{description}</span><br />
+            <span>{description}</span><br />
           </div>
         </div>
       </section>

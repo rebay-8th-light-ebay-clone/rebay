@@ -18,6 +18,7 @@ const useForm = ({ submit, validate, initialValues = {} }) => {
     if (event) {
       event.preventDefault();
       setIsSubmitting(true);
+      localStorage.setItem("create_item", JSON.stringify(values));
       setErrors(validate(values));
     }
   };

@@ -22,9 +22,9 @@ export function timeRemaining(startDate, endDate) {
 }
 
 export const dayEndedUTCString = date => {
-  const entered_date = new Date(date);
+  let entered_date = new Date(date);
   const end_date = setDefaultTime(entered_date);
-  return end_date.toUTCString();
+  return end_date.toISOString();
 }
 
 const setDefaultTime = date => {

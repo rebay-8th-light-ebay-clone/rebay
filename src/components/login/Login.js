@@ -4,14 +4,14 @@ import Page from 'components/UI/Page';
 import './Login.scss';
 import API_URL from 'utilities/apiEndpoint';
 
-const Login = (props, { apiHandler }) => {
+const Login = (props) => {
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(false)
 
     useEffect(() => {
         const { uuid } = props.match.params;
         const fetchUser = async () => {
-            const { data, error } = await apiHandler.get(`/api/users/${uuid}`);
+            const { data, error } = await props.apiHandler.get(`/api/users/${uuid}`);
             if (data) {
                 localStorage.setItem("user", JSON.stringify(data))
                 setSuccess(true)
@@ -22,7 +22,7 @@ const Login = (props, { apiHandler }) => {
         if (uuid) {
             fetchUser();
         }
-    }, [props.match.params, apiHandler])
+    }, [props.match.params, props.apiHandler])
 
     const handleError = (err) => {
         return err && `Error: ${err.message}`;

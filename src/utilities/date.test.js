@@ -66,16 +66,16 @@ describe('timeRemainingMessage', () => {
 
 describe('dayEndedUTCString', () => {
   test('converts a date string ', () => {
-    const dateString = "01-01-2019";
+    const dateString = "07-01-2019";
     const formattedDate = dayEndedUTCString(dateString);
-    const expectedDate = "Wed, 02 Jan 2019";
-    expect(formattedDate).toContain(expectedDate);
+    const expectedDate = "2019-07-02T06:59:59.000Z";
+    expect(formattedDate).toEqual(expectedDate);
   });
 
   test('defaults time to end of day', () => {
     const dateString = "01-01-2019";
     const formattedDate = dayEndedUTCString(dateString);
-    const expectedTime = "07:59:59 GMT";
-    expect(formattedDate).toContain(expectedTime)
+    const expectedTime = "2019-01-02T07:59:59.000Z";
+    expect(formattedDate).toEqual(expectedTime)
   });
 })

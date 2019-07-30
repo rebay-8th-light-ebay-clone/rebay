@@ -7,29 +7,30 @@ import Login from 'components/login/Login';
 import CreateItemPage from 'components/create_item/CreateItemPage';
 import './App.scss';
 
-export const UnauthenticatedApp = (props) => {
-  const apiHandler = new APIHandler();
+const apiHandler = new APIHandler();
 
+export const UnauthenticatedApp = (props) => {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/login/:uuid" exact render={(props) => <Login apiHandler={apiHandler} {...props} />} />
-          <Route path="/login" exact render={(props) => <Login apiHandler={apiHandler} {...props} />} />
-          <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
-          <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
-          <Route path="/items/new" exact render={() => <CreateItemPage />} />
-          <Route path="/users/:user_uuid/items/:uuid" exact render={props => <Item apiHandler={apiHandler} {...props} />} />
+          {props.children}
+          <Route path="/login/:uuid" render={(props) => <Login apiHandler={apiHandler} {...props} />} />
+          <Route path="/login" render={(props) => <Login apiHandler={apiHandler} {...props} />} />
+          <Route path="/users/:user_uuid/items/:uuid" render={props => <Item apiHandler={apiHandler} {...props} />} />
+          <Route path="/items" render={() => <Items apiHandler={apiHandler} />} />
+          <Route path="/" render={() => <Items apiHandler={apiHandler} />} />
         </Switch>
-        {props.children}
       </Router>
     </div>
   );
 }
 
-export const AuthenticatedApp = () => {
+export const AuthenticatedApp = (props) => {
   return (
     <UnauthenticatedApp>
+      <Route path="/items/new" render={props => <CreateItemPage apiHandler={apiHandler} />} />
+      {props.children}
     </UnauthenticatedApp>
   )
 }

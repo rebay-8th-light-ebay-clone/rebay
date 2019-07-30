@@ -13,7 +13,7 @@ describe('Item Page Test', () => {
       "data": {
         "description": "test description",
         "end_date": "2019-07-17T16:53:52Z",
-        "id": 1,
+        "uuid": 1,
         "image": "test-image-url",
         "price": 10,
         "title": "test title",

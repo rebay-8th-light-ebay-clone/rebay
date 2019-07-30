@@ -15,7 +15,7 @@ const expectedFormattedRequest = {
   image: "http://example.com/image",
   price: 100,
   category: "other",
-  end_date: "Wed, 01 Jan 2020 07:59:59 GMT"
+  end_date: "2020-01-01T07:59:59.000Z"
 };
 
 describe("formatRequest", () => {
