@@ -1,0 +1,65 @@
+@import 'styles/_shared.scss';
+
+.header--container {
+    background-color: white;
+    height: 60px;
+    font-size: calc(10px + 2vmin);
+    color: $dark-grey;
+    border-bottom: 2px solid $theme-color;
+    box-shadow: $box-shadow-blue;
+    a {
+      text-decoration: none;
+    }
+}
+
+.header {
+    margin: 0 auto;
+    padding: 18px;
+    max-width: $max-width;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "logo navigation";
+}
+
+.logo {
+    grid-area: logo;
+    justify-self: start;
+    align-self: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 18px;
+    color: $theme-color;
+}
+
+.navigation {
+    grid-area: navigation;
+    justify-self: end;
+    align-self: center;
+    color: $theme-color; 
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    align-items: center;
+
+    a {
+        color: $dark-grey;
+    }
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.btn--tertiary {
+    border: none;
+    background-color: white;
+    box-shadow: none;
+    cursor: pointer;
+}
