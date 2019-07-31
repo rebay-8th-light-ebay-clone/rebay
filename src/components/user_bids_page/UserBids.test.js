@@ -20,13 +20,22 @@ describe('User Bids Test', () => {
                         "price": 10,
                         "title": "test title"
                     },
-                    "bid": {
-                        "bid_uuid": 1,
-                        "user_uuid": 1,
-                        "item_uuid": 1,
-                        "bid_price": 15,
-                        "timestamp": "2019-07-17T16:53:52Z",
-                    }
+                    "bids": [
+                        {
+                            "bid_uuid": 1,
+                            "user_uuid": 1,
+                            "item_uuid": 1,
+                            "bid_price": 15,
+                            "timestamp": "2019-07-17T16:53:52Z",
+                        },
+                        {
+                            "bid_uuid": 1,
+                            "user_uuid": 1,
+                            "item_uuid": 1,
+                            "bid_price": 200,
+                            "timestamp": "2019-07-17T16:53:52Z",
+                        }
+                    ]
                 }
             ]
         }
@@ -45,6 +54,13 @@ describe('User Bids Test', () => {
         component.getByText(/hr|This Auction Has Ended/);
         component.getByText('$0.10');
         component.getByText(/0.15/i);
+        component.getByText(/2.00/i);
     })
 
+    test('renders a message if no user bids', async () => {
+        const apiHandler = new MockAPIHandler({ data: { data: [] } });
+        const component = render(<UserBids apiHandler={apiHandler} match={{ params: { id: 1 } }} />);
+
+        component.getByText(/You have no bids yet!/i);
+    })
 })

@@ -9,24 +9,26 @@ const UserBids = (props) => {
 
     useEffect(() => {
         const fetchBids = async () => {
-            const { data, error } = await apiHandler.get(`/api/users/${match.params.id}/bids`);
+            const { data, error } = await apiHandler.get(`/api/users/${match.params.uuid}/bids`);
+            console.log(data)
             data ? setItemBids(data) : setError(error);
         }
         fetchBids();
-    }, [itemBids, apiHandler, match.params.id]);
+    }, []);
 
     const handleError = (err) => {
         return err && `Error: ${err.message}`;
     }
 
     const renderBidCards = (itemBids) => {
-        if (itemBids) {
+        if (itemBids && itemBids.length > 0) {
             return itemBids.map(itemBid => {
-                const { item, bid } = itemBid;
-                return <UserBidCard item={item} bid={bid} key={bid.bid_uuid} />
+                const { item, bids } = itemBid;
+                return <UserBidCard item={item} bids={bids} key={item.uuid} />
             })
+        } else {
+            return <div className='no-bids'>You Have No Bids Yet!<br /><p>Please check back here after you bid on an item.</p></div>
         }
-        return null;
     }
 
     return (

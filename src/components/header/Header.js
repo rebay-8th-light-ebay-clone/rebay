@@ -24,7 +24,7 @@ const AuthenticatedHeader = ({ user, setUser }) => {
 
     return (
         <BasicHeader>
-            <a href="/user/d673200c-97ac-4b38-801a-62f36613f60a/bids">My Bids</a>
+            <a href={`/user/${user.uuid}/bids`}>My Bids</a>
             <a href="/items/new">Sell</a>
             <div className='avatar'>
                 <img className='avatar-img' alt="avatar" src={userAvatar} onClick={() => toggleDropdown(!dropdownVisible)} />
