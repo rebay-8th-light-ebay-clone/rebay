@@ -7,6 +7,7 @@ import Login from 'components/login/Login';
 import CreateItemPage from 'components/create_item/CreateItemPage';
 import UpdateItemPage from 'components/update_item/UpdateItemPage';
 import UserBids from 'components/user_bids_page/UserBids';
+import UserItems from 'components/user_items_page/UserItems';
 import './App.scss';
 
 const apiHandler = new APIHandler();
@@ -31,7 +32,7 @@ export const UnauthenticatedApp = (props) => {
 export const AuthenticatedApp = (props) => {
   return (
     <UnauthenticatedApp>
-      {/* <Route path="/user/:uuid/items" exact render={(props) => <UserItems apiHandler={apiHandler} {...props} />} /> */}
+      <Route path="/user/:uuid/items" exact render={(props) => <UserItems apiHandler={apiHandler} {...props} />} />
       <Route path="/user/:uuid/bids" exact render={(props) => <UserBids apiHandler={apiHandler} {...props} />} />
       <Route path="/users/:user_uuid/items/:uuid/edit" exact render={(props) => <UpdateItemPage apiHandler={apiHandler} {...props} />} />
       <Route path="/users/:user_uuid/items/new" render={props => <CreateItemPage apiHandler={apiHandler} {...props} />} />
