@@ -1,0 +1,36 @@
+@import 'styles/_shared.scss';
+
+.user-item--container {
+    .item--card-container {
+        border-radius: 6px 6px 0px 0px;
+    }
+}
+.item-controller--container {
+    background-color: $theme-color--med-light;
+    padding: 10px 20px;
+    border-radius: 0px 0px 6px 6px;
+    box-shadow: $box-shadow;
+    text-align: right;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        color: $theme-color;
+        font-weight: 600;
+    }
+
+    .btn-delete {
+        color: $med-grey;
+        background-color: $theme-color--med-light;
+        border: none;
+        font-weight: 600;
+        margin: 0px;
+        padding: 0px;
+        cursor: pointer;
+        font-size: 14px;
+        &:hover {
+            color: $attention-red;
+        }
+    }
+}

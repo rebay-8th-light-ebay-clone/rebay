@@ -19,7 +19,7 @@ const UpdateItemPage = ({ apiHandler, match }) => {
         data ? setItem(formatResponse(data)) : setError(errors);
     }
     fetchItems();
-  });
+  }, [apiHandler, user_uuid, uuid]);
 
   const submit = async values => {
     const formattedValues = formatRequest(values);
