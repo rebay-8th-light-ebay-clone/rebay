@@ -31,9 +31,10 @@ export const UnauthenticatedApp = (props) => {
 export const AuthenticatedApp = (props) => {
   return (
     <UnauthenticatedApp>
+      {/* <Route path="/user/:uuid/items" exact render={(props) => <UserItems apiHandler={apiHandler} {...props} />} /> */}
       <Route path="/user/:uuid/bids" exact render={(props) => <UserBids apiHandler={apiHandler} {...props} />} />
       <Route path="/users/:user_uuid/items/:uuid/edit" exact render={(props) => <UpdateItemPage apiHandler={apiHandler} {...props} />} />
-      <Route path="/items/new" render={props => <CreateItemPage apiHandler={apiHandler} />} />
+      <Route path="/users/:user_uuid/items/new" render={props => <CreateItemPage apiHandler={apiHandler} {...props} />} />
       {props.children}
     </UnauthenticatedApp>
   )

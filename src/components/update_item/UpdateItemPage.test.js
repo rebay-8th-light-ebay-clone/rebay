@@ -28,8 +28,11 @@ describe('Update Item Page Test', () => {
         }
     };
     const apiHandler = new MockAPIHandler(itemData);
-    // localhost:3000/users/user_uuid/items/uuid/edit
-    const { getByLabelText, getByDisplayValue } = render(<UpdateItemPage apiHandler={apiHandler} match={{ params: { user_uuid: 2, uuid: 1 } }} />);
+    const { getByLabelText, getByDisplayValue } = render(
+        <UpdateItemPage 
+            apiHandler={apiHandler} 
+            match={{ params: { user_uuid: 2, uuid: 1 } }} 
+        />);
     
     await waitForElement(() =>
       getByDisplayValue("test description") 

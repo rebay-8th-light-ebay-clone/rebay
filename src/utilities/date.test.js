@@ -1,4 +1,11 @@
-import { dayEndedUTCString, timeRemaining, timeRemainingMessage, dateFormatter } from './date';
+import { 
+  dayEndedUTCString, 
+  timeRemaining,
+  timeRemainingMessage, 
+  dateFormatter, 
+  ISOStringToLocaleDate, 
+  ISOStringToLocaleTime 
+} from './date';
 
 describe('timeRemaining', () => {
   test('returns the remaining days hours, and minutes', () => {
@@ -71,14 +78,17 @@ describe('dayEndedUTCString', () => {
     const expectedDate = "2019-07-02T06:59:59.000Z";
     expect(formattedDate).toEqual(expectedDate);
   });
+})
 
-  test('defaults time to end of day', () => {
-    const dateString = "01-01-2019";
-    const formattedDate = dayEndedUTCString(dateString);
-    const expectedTime = "2019-01-02T07:59:59.000Z";
-    expect(formattedDate).toEqual(expectedTime)
+describe('ISOStringToLocaleDate', () => {
+  test('converts a ISO string to local time ', () => {
+    const dateString = "2019-07-02T06:59:59.000Z";
+    const formattedDate = ISOStringToLocaleDate(dateString);
+    const expectedDate = "2019-07-01";
+    expect(formattedDate).toEqual(expectedDate);
   });
 })
+
 
 describe('date formatter', () => {
   const date = new Date("2019-07-17T16:53:52Z").toUTCString()

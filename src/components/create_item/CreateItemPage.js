@@ -7,9 +7,10 @@ import { Redirect } from 'react-router'
 import Error from 'components/UI/Error';
 import "./CreateItemPage.scss";
 
-const CreateItemPage = ({ apiHandler }) => {
+const CreateItemPage = ({ apiHandler, match }) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const {user_uuid} = match.params;
 
   const initialValues = localStorage.getItem("create_item")
     ? JSON.parse(localStorage.getItem("create_item"))
@@ -23,16 +24,16 @@ const CreateItemPage = ({ apiHandler }) => {
     };
 
   const submit = async values => {
-    const formattedValues = formatRequest(values);
-    const userUUID = JSON.parse(localStorage.getItem("user"));
-    if (userUUID && userUUID.uuid) {
-      const result = await apiHandler.post(`/api/users/${userUUID.uuid}/items`, formattedValues);
+    const formattedValues = formatRequest(values);    
+    const userUUID = JSON.parse(localStorage.getItem("user")).uuid;
+    if (userUUID === user_uuid) {
+      const result = await apiHandler.post(`/api/users/${user_uuid}/items`, formattedValues);
       if (result.data) {
         setSuccess(result.data);
         localStorage.removeItem("create_item");
       }
     }
-    setError("You are not authorized to create a new item. Please log in first.")
+    setError("You are not authorized to create a new item.")
     return;
   }
 

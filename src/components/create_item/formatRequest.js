@@ -1,4 +1,4 @@
-import { dayEndedUTCString } from "../../utilities/date";
+import { dayEndedUTCString, ISOStringToLocaleDate } from "../../utilities/date";
 import { dollarToPennyConverter, pennyToDollarConverter } from "../../utilities/price";
 
 export const formatRequest = values => {
@@ -20,7 +20,7 @@ export const formatResponse = values => {
 
   return {
     price: pennyToDollarConverter(price),
-    date: new Date(end_date),
+    date: ISOStringToLocaleDate(end_date),
     title,
     description,
     image,

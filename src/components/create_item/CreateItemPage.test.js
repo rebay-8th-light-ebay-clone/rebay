@@ -6,7 +6,7 @@ describe("CreateItemPage", () => {
   afterEach(cleanup);
 
   const setup = labelText => {
-    const { ...utils } = render(<CreateItemPage />);
+    const { ...utils } = render(<CreateItemPage match={{ params: { user_uuid: 2 } }} />);
     const input = utils.getByLabelText(labelText);
     return { input, ...utils };
   };
@@ -88,7 +88,7 @@ describe("CreateItemPage", () => {
   });
 
   test("renders error when price is less than 1.00", () => {
-    const utils = render(<CreateItemPage />);
+    const utils = render(<CreateItemPage match={{ params: { user_uuid: 2 } }} />);
     const input = utils.getByLabelText("Starting Price (USD)");
 
     fireEvent.change(input, { target: { value: "a" } });
