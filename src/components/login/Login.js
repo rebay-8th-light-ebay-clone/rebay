@@ -10,12 +10,12 @@ const Login = (props) => {
     useEffect(() => {
         const { uuid } = props.match.params;
         const fetchUser = async () => {
-            const { data, error } = await props.apiHandler.get(`/api/users/${uuid}`);
+            const { data, errors } = await props.apiHandler.get(`/api/users/${uuid}`);
             if (data) {
                 localStorage.setItem("user", JSON.stringify(data))
                 setSuccess(true)
             } else {
-                setError(error);
+                setError(errors);
             }
         }
         if (uuid) {

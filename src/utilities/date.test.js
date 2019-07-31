@@ -87,6 +87,12 @@ describe('ISOStringToLocaleDate', () => {
     const expectedDate = "2019-07-01";
     expect(formattedDate).toEqual(expectedDate);
   });
+
+  test("converts a ISO string to local time", () => {
+    const dateString = "2019-07-02T06:59:59.000Z";
+    const formattedTime = ISOStringToLocaleTime(dateString);
+    expect(formattedTime).toEqual("11:59:59 PM");
+  })
 })
 
 

@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
+  justify-items: stretch;
 
   img {
     grid-column: 1 / 2;
