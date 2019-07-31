@@ -1,0 +1,29 @@
+@import 'styles/_shared.scss';
+
+.page {
+    h1 {
+        @include page-h1;
+        max-width: $max-width;
+        margin: 30px auto 20px auto;
+    }
+}
+
+.items--container {
+    box-sizing: border-box;
+    max-width: $max-width;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+
+    align-items: start;
+    justify-items: center;
+}
+
+@media (max-width: 1180px) {
+  .items--container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-gap: 15px;
+  }
+}
