@@ -1,5 +1,5 @@
 import { dayEndedUTCString } from "../../utilities/date";
-import { dollarToPennyConverter } from "../../utilities/price";
+import { dollarToPennyConverter, pennyToDollarConverter } from "../../utilities/price";
 
 export const formatRequest = values => {
   const { title, description, image, price, category, date } = values;
@@ -13,3 +13,18 @@ export const formatRequest = values => {
     category
   };
 };
+
+
+export const formatResponse = values => {
+  const { title, description, image, price, category, end_date, uuid } = values;
+
+  return {
+    price: pennyToDollarConverter(price),
+    date: new Date(end_date),
+    title,
+    description,
+    image,
+    category,
+    uuid
+  }
+}

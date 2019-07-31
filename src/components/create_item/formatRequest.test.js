@@ -1,4 +1,4 @@
-import { formatRequest } from "./formatRequest";
+import { formatRequest, formatResponse } from "./formatRequest";
 
 const request = {
   title: "Example title",
@@ -15,7 +15,7 @@ const expectedFormattedRequest = {
   image: "http://example.com/image",
   price: 100,
   category: "other",
-  end_date: "2020-01-01T07:59:59.000Z"
+  end_date: "2020-01-01T07:59:59.000Z",
 };
 
 describe("formatRequest", () => {
@@ -24,3 +24,11 @@ describe("formatRequest", () => {
     expect(formattedRequest).toStrictEqual(expectedFormattedRequest);
   });
 });
+
+
+// describe("formatRequest", () => {
+//   test("properly formats the entire response payload", () => {
+//     const response = formatResponse(expectedFormattedRequest);
+//     expect(response).toStrictEqual(request);
+//   });
+// });

@@ -109,4 +109,48 @@ describe("ItemForm", () => {
 
     expect(mockSubmit.mock.calls.length).toBe(0);
   });
+
+  test("disables price when editing is true", () => {
+    const mockErrors = { title: "Some Error" };
+    const validate = _ => mockErrors;
+    const { getByLabelText } = render(
+      <ItemForm
+        initialValues={{
+          title: "Example Title",
+          description: "Example Description",
+          image: "http://example.com",
+          price: "1.00",
+          category: "other",
+          date: "2050-01-01"
+        }}
+        validate={validate}
+        editing={true}
+      />
+    );
+
+    const price = getByLabelText("Starting Price (USD)");
+    expect(price.disabled).toEqual(true);
+  });
+
+  test("disables date when editing is true", () => {
+    const mockErrors = { title: "Some Error" };
+    const validate = _ => mockErrors;
+    const { getByLabelText } = render(
+      <ItemForm
+        initialValues={{
+          title: "Example Title",
+          description: "Example Description",
+          image: "http://example.com",
+          price: "1.00",
+          category: "other",
+          date: "2050-01-01"
+        }}
+        validate={validate}
+        editing={true}
+      />
+    );
+
+    const endDate = getByLabelText("Auction End Date");
+    expect(endDate.disabled).toEqual(true);
+  });
 });
