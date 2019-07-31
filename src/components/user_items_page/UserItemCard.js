@@ -1,6 +1,5 @@
 import React from 'react';
 import ItemCard from 'components/item_card/ItemCard';
-import { Link } from 'react-router-dom';
 import './UserItemCard.scss';
 
 const UserItemCard = ({ item }) => {
@@ -19,9 +18,9 @@ const ItemController = ({ item }) => {
             <button className='btn-delete'>
                 Delete
             </button>
-            <Link to={`/users/${user_uuid}/items/${uuid}/edit`}>
+            <a href={`/users/${user_uuid}/items/${uuid}/edit`}>
                 Edit
-            </Link>
+            </a>
         </section>
     )
 }
