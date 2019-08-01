@@ -5,8 +5,7 @@ import {
     waitForElement,
     cleanup
 } from '@testing-library/react'
-import APIHandler from 'utilities/apiHandler';
-import MockFetcher from 'utilities/mockFetcher';
+import MockAPIHandler from 'utilities/APIHandler/mockApiHandler';
 
 jest.unmock('axios')
 
@@ -40,7 +39,7 @@ describe('Items Test', () => {
                 ]
             }
         };
-        const apiHandler = new APIHandler(new MockFetcher(itemData));
+        const apiHandler = new MockAPIHandler(itemData);
         const { findAllByText } = render(<ItemsPage apiHandler={apiHandler} />)
         const renderedItems = await waitForElement(() =>
             findAllByText('item')
@@ -55,7 +54,7 @@ describe('Items Test', () => {
                 "message": "Invalid fetch"
             }
         };
-        const apiHandler = new APIHandler(new MockFetcher(error));
+        const apiHandler = new MockAPIHandler(error);
         const { findByText } = render(<ItemsPage apiHandler={apiHandler} />)
         const errorItem = await waitForElement(() =>
             findByText("Error: Invalid fetch")

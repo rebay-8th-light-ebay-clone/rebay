@@ -1,25 +1,34 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import APIHandler from './utilities/apiHandler';
-import Fetcher from './utilities/fetcher';
+import APIHandler from './utilities/APIHandler/apiHandler';
 import Items from 'components/all_items_page/Items';
 import Item from 'components/item_page/Item';
+import Login from 'components/login/Login';
+import Header from 'components/header/Header';
 import './App.scss';
 
-function App() {
-  const apiHandler = new APIHandler(new Fetcher());
+export const UnauthenticatedApp = (props) => {
+  const apiHandler = new APIHandler();
+
   return (
     <div className="App">
-      <header className="header">
-        <a href="/">Rebay</a>
-      </header>
+      <Header user={JSON.parse(localStorage.getItem("user"))} />
       <Router>
+        <Route path="/login/:uuid" exact render={(props) => <Login apiHandler={apiHandler} {...props} />} />
+        <Route path="/login" exact render={(props) => <Login apiHandler={apiHandler} {...props} />} />
         <Route path="/" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items" exact render={() => <Items apiHandler={apiHandler} />} />
         <Route path="/items/:id" exact render={props => <Item apiHandler={apiHandler} {...props} />} />
+        {props.children}      
       </Router>
     </div>
   );
 }
 
-export default App;
+export const AuthenticatedApp = () => {
+  return (
+    <UnauthenticatedApp>
+      <Route path="/user/:uuid/bid/new" />
+    </UnauthenticatedApp>
+  )
+}

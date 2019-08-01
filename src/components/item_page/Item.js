@@ -11,7 +11,7 @@ const Item = (props) => {
       data ? setItem(data) : setError(error);
     }
     fetchItems();
-  }, [item, props.match.params.id]);
+  }, [item, props.apiHandler, props.match.params.id]);
 
 
   const handleError = (err) => {
