@@ -12,7 +12,7 @@ const Item = (props) => {
       data ? setItem(data) : setError(error);
     }
     fetchItems();
-  }, [props.apiHandler]);
+  }, [props.apiHandler, props.match.params]);
 
 
   const handleError = (err) => {

@@ -1,4 +1,4 @@
-export const pennyToDollarConverter = (pennies) => {
+export const convertPenniesToDollars = (pennies) => {
     if (pennies < 10) {
         return `0.0${pennies}`;
     } else if (pennies < 100) {
@@ -11,4 +11,4 @@ export const pennyToDollarConverter = (pennies) => {
     }
 }
 
-export const dollarToPennyConverter = price => Math.trunc(price * 100);
+export const convertDollarsToPennies = price => Math.trunc(price * 100);
