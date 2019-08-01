@@ -6,12 +6,13 @@ const Item = (props) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const { uuid, user_uuid } = props.match.params;
     const fetchItems = async () => {
-      const { data, error } = await props.apiHandler.get(`/api/items/${props.match.params.id}`);
+      const { data, error } = await props.apiHandler.get(`/api/users/${user_uuid}/items/${uuid}`);
       data ? setItem(data) : setError(error);
     }
     fetchItems();
-  }, [item, props.apiHandler, props.match.params.id]);
+  });
 
 
   const handleError = (err) => {

@@ -4,7 +4,7 @@ import './index.scss';
 import { UnauthenticatedApp, AuthenticatedApp } from './App';
 import * as serviceWorker from './serviceWorker';
 
-const app = localStorage.getItem("token") 
+const app = localStorage.getItem("user") 
                 ? <AuthenticatedApp /> 
                 : <UnauthenticatedApp />;
 ReactDOM.render(app, document.getElementById('root'));

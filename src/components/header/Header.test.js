@@ -11,7 +11,8 @@ describe('Header', () => {
         const component = render(
             <Header user={{}} />
         )
-
+        
+        component.getByText('Sell')
         component.getByText('Log Out')
     })
 

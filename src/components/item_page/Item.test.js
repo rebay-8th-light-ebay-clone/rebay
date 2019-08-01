@@ -3,7 +3,7 @@ import Item from './Item';
 import { cleanup, render, waitForElement } from '@testing-library/react';
 import MockAPIHandler from 'utilities/APIHandler/mockApiHandler';
 
-describe('ItemsPage Test', () => {
+describe('Item Page Test', () => {
   afterEach(() => {
     cleanup();
   })
@@ -13,7 +13,7 @@ describe('ItemsPage Test', () => {
       "data": {
         "description": "test description",
         "end_date": "2019-07-17T16:53:52Z",
-        "id": 1,
+        "uuid": 1,
         "image": "test-image-url",
         "price": 10,
         "title": "test title",
@@ -23,7 +23,7 @@ describe('ItemsPage Test', () => {
 
   test('renders an item with the correct data', async () => {
     const apiHandler = new MockAPIHandler(itemData);
-    const component = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />);
+    const component = render(<Item apiHandler={apiHandler} match={{ params: { uuid: 1 } }} />);
 
     await waitForElement(() =>
       component.findAllByText('test title')
@@ -32,7 +32,7 @@ describe('ItemsPage Test', () => {
     component.getByAltText('test title')
     component.getByText('test description');
     component.getByText(/hr|This Auction Has Ended/);
-    component.getByText('Current Bid: $10');
+    component.getByText('Current Bid: $0.10');
     component.getByText('test title');
   })
 
@@ -43,7 +43,7 @@ describe('ItemsPage Test', () => {
       }
     };
     const apiHandler = new MockAPIHandler(error);
-    const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { id: 1 } }} />)
+    const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { uuid: 1 } }} />)
     const errorItem = await waitForElement(() =>
       findByText("Error: Invalid fetch")
     )

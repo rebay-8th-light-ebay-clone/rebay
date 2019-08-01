@@ -1,0 +1,9 @@
+@import 'styles/_shared.scss';
+
+.error--container {
+    background-color: $attention-red--light;
+    color: $attention-red;
+    margin: 20px;
+    font-weight: 600;
+    padding: 10px;
+}

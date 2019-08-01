@@ -23,6 +23,7 @@ const AuthenticatedHeader = ({ user, setUser }) => {
 
     return (
         <BasicHeader>
+            <a href="/items/new">Sell</a>
             <button className='btn--tertiary' onClick={logOut}>Log Out</button>
             <img className='avatar' alt="avatar" src={userAvatar} />
         </BasicHeader>
