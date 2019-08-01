@@ -3,6 +3,7 @@ import { ItemPage } from './ItemPage';
 
 const Item = (props) => {
   const [item, setItem] = useState({});
+  const [bids, setBids] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
