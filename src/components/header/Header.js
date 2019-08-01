@@ -13,6 +13,7 @@ const BasicHeader = (props) => (
 )
 
 const AuthenticatedHeader = ({ user, setUser }) => {
+    const [dropdownVisible, toggleDropdown] = useState(false)
     const logOut = () => {
         localStorage.removeItem("user")
         localStorage.removeItem("token")
@@ -23,9 +24,17 @@ const AuthenticatedHeader = ({ user, setUser }) => {
 
     return (
         <BasicHeader>
+            <a href={`/user/${user.uuid}/bids`}>My Bids</a>
             <a href="/items/new">Sell</a>
-            <button className='btn--tertiary' onClick={logOut}>Log Out</button>
-            <img className='avatar' alt="avatar" src={userAvatar} />
+            <div className='avatar'>
+                <img className='avatar-img' alt="avatar" src={userAvatar} onClick={() => toggleDropdown(!dropdownVisible)} />
+                {
+                    dropdownVisible
+                    && <div className='dropdown'>
+                        <button className='btn--tertiary' onClick={logOut}>Log Out</button>
+                    </div>
+                }
+            </div>
         </BasicHeader>
     )
 }
@@ -38,10 +47,10 @@ const UnauthenticatedHeader = () => (
 
 const Header = ({ user }) => {
     const [authUser, setUser] = useState(user);
-    
-    return authUser 
-            ? <AuthenticatedHeader user={authUser} setUser={setUser} /> 
-            : <UnauthenticatedHeader />
+
+    return authUser
+        ? <AuthenticatedHeader user={authUser} setUser={setUser} />
+        : <UnauthenticatedHeader />
 }
 
 export default Header;

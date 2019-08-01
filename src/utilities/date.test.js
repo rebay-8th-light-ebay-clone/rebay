@@ -1,4 +1,4 @@
-import { dayEndedUTCString, timeRemaining, timeRemainingMessage } from './date';
+import { dayEndedUTCString, timeRemaining, timeRemainingMessage, dateFormatter } from './date';
 
 describe('timeRemaining', () => {
   test('returns the remaining days hours, and minutes', () => {
@@ -78,4 +78,9 @@ describe('dayEndedUTCString', () => {
     const expectedTime = "2019-01-02T07:59:59.000Z";
     expect(formattedDate).toEqual(expectedTime)
   });
+})
+
+describe('date formatter', () => {
+  const date = new Date("2019-07-17T16:53:52Z").toUTCString()
+  expect(dateFormatter(date)).toEqual("Jul 07, 2019 09:53 AM")
 })

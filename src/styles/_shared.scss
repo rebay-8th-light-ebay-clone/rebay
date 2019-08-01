@@ -29,8 +29,11 @@ $palest-grey: #f8f8f8;
 
 $theme-color: #2186EB;
 $theme-color--light: #E5F6FF;
+$theme-color--med-light: rgb(177, 213, 243);
+$theme-color--medium: rgb(69, 140, 199);
 $theme-color--dark: rgb(22, 100, 179);
 $theme-color--gradient:  linear-gradient(30deg, $theme-color--dark, $theme-color);
+$theme-color--gradient-med:  linear-gradient(5deg,  rgb(142, 182, 218), $theme-color--med-light);
 $page-background: #F5F7FA;
 
 $attention-red: rgb(236, 82, 71);

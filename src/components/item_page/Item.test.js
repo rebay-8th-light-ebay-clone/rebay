@@ -3,7 +3,7 @@ import Item from './Item';
 import { cleanup, render, waitForElement } from '@testing-library/react';
 import MockAPIHandler from 'utilities/APIHandler/mockApiHandler';
 
-describe('Item Page Test', () => {
+describe('Item Test', () => {
   afterEach(() => {
     cleanup();
   })

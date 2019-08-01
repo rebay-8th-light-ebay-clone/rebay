@@ -16,7 +16,7 @@ describe('Items Page Test', () => {
   
   it('renders children elements', () => {
     const component = render(
-      <ItemsPage>
+      <ItemsPage title={'Items Page'}>
         <div>Hello</div>
         <h1>World</h1>
       </ItemsPage>

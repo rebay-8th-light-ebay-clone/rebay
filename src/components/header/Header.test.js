@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, cleanup, fireEvent, getByAltText } from '@testing-library/react'
 
 describe('Header', () => {
     afterEach(() => {
@@ -8,12 +8,11 @@ describe('Header', () => {
     })
 
     it('renders Authenticated Header if user exists', () => {
-        const component = render(
-            <Header user={{}} />
-        )
-        
-        component.getByText('Sell')
-        component.getByText('Log Out')
+        const { getByAltText, getByText } = render(<Header user={{}} />)
+        fireEvent.click(getByAltText('avatar'))
+
+        getByText('Sell')
+        getByText('Log Out')
     })
 
     it('renders Unauthenticated Header if user does not exists', () => {
@@ -25,10 +24,11 @@ describe('Header', () => {
     })
 
     it('clicking log out in Authenticated Header should switch to Unauthenticated Header', () => {
-       const { getByRole, getByText } = render(
+       const { getByAltText,  getByText } = render(
             <Header user={{}} />
         )
-        fireEvent.click(getByRole('button'))
+        fireEvent.click(getByAltText('avatar'))
+        fireEvent.click(getByText('Log Out'))
 
         getByText('Log In')
     })

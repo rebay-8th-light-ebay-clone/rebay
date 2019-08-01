@@ -21,7 +21,7 @@
     justify-items: center;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .items--container {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     grid-gap: 15px;
