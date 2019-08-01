@@ -86,3 +86,11 @@
         background-color: $theme-color--light;
     }
 }
+
+@media (max-width: 600px) {
+    .header {
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+    }
+}

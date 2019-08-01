@@ -73,7 +73,7 @@ describe('timeRemainingMessage', () => {
 
 describe('dayEndedUTCString', () => {
   test('converts a date string ', () => {
-    const dateString = "07-01-2019";
+    const dateString = "2019-07-01";
     const formattedDate = dayEndedUTCString(dateString);
     const expectedDate = "2019-07-02T06:59:59.000Z";
     expect(formattedDate).toEqual(expectedDate);
@@ -86,7 +86,14 @@ describe('ISOStringToLocaleDate', () => {
     const formattedDate = ISOStringToLocaleDate(dateString);
     const expectedDate = "2019-07-01";
     expect(formattedDate).toEqual(expectedDate);
+    expect(dayEndedUTCString(expectedDate)).toEqual("2019-07-02T06:59:59.000Z")
   });
+
+  test("converts a ISO string to local time", () => {
+    const dateString = "2019-07-02T06:59:59.000Z";
+    const formattedTime = ISOStringToLocaleTime(dateString);
+    expect(formattedTime).toEqual("11:59:59 PM");
+  })
 })
 
 
