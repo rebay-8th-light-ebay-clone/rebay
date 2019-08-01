@@ -25,6 +25,14 @@ class APIHandler {
         .then(response => response.data)
         .catch(error => error);
     }
+
+    delete = async (endpoint) => {
+        return axios.delete(API_URL + endpoint, {
+            withCredentials: true
+        })
+        .then(response => response)
+        .catch(error => error);
+    }
 }
 
 export default APIHandler;
