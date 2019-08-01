@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 import Page from 'components/UI/Page';
 import './Login.scss';
 import API_URL from 'utilities/apiEndpoint';
