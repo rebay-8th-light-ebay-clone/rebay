@@ -15,13 +15,16 @@ const Item = (props) => {
     fetchItems();
   }, [props.apiHandler, props.match.params]);
 
-
   const handleError = (err) => {
     return err && `Error: ${err.message}`;
   }
 
+  const handleBidSubmit = (values) => {
+    console.log(values)
+  }
+
   return (
-    <ItemPage item={item} error={handleError(error)}>
+    <ItemPage item={item} error={handleError(error)} handleBidSubmit={handleBidSubmit}>
       {
         item.uuid && <ItemBids item_uuid={item.uuid} handleError={handleError} apiHandler={props.apiHandler} />
       }

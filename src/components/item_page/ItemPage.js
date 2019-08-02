@@ -3,8 +3,9 @@ import './ItemPage.scss';
 import Page from '../UI/Page';
 import { timeRemainingFromNowMessage } from '../../utilities/date';
 import { convertPenniesToDollars } from 'utilities/price';
+import ItemBidForm from 'components/item_bids/ItemBidForm';
 
-export const ItemPage = ({ item, error, children }) => {
+export const ItemPage = ({ item, error, children, handleBidSubmit }) => {
   const { title, description, price, end_date, image } = item;
   return (
     <Page>
@@ -19,7 +20,10 @@ export const ItemPage = ({ item, error, children }) => {
             <span>Current Bid: ${convertPenniesToDollars(price)}</span><br />
             <span>{timeRemainingFromNowMessage(new Date(end_date))}</span><br />
           </div>
-
+          <div className="item-description">
+            <h4 id="description-header">Bid On This Item</h4>
+            <ItemBidForm submit={handleBidSubmit} minimum_price={convertPenniesToDollars(price + 100)} auction_active={true} />
+          </div>
           <div className="item-description">
             <h4 id="description-header">Product Description</h4>
             <span>{description}</span><br />

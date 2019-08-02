@@ -1,0 +1,79 @@
+@import 'styles/_shared.scss';
+
+
+.form-container {
+    max-width: 400px;
+    background-color: white;
+    box-shadow: $box-shadow;
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    padding: 30px;
+  
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: stretch;
+      grid-gap: 10px;
+      color: $darker-grey;
+  
+      label, .error {
+        margin-bottom: -5px;
+        font-size: 12px;
+      } 
+  
+      label {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: $dark-grey;
+      }
+  
+      .error {
+        color: $attention-red;
+        text-align: left;
+        text-transform: capitalize;
+        margin-bottom: 10px;
+      }
+  
+      input,
+      textarea,
+      select {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        border: 1px solid $grey;
+        padding: 5px;
+        font-size: 14px;
+        background-color: white;
+        &:disabled {
+          background-color: $pale-grey;
+          cursor: not-allowed;
+        }
+      }
+  
+      textarea {
+        resize: vertical;
+      }
+    
+      label {
+        text-align: left;
+      }
+  
+    }
+  }
+  
+  .btn-primary {
+    color: white;
+    background-color: $theme-color;
+    box-shadow: $box-shadow;
+    border-radius: 6px;
+    padding: 10px 40px;
+    border: none;
+    justify-self: center;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: $theme-color--dark;
+    }
+  }
+  

@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 
-const useForm = ({ submit, validate, initialValues = {} }) => {
+const useForm = ({ submit, validate, initialValues = {}, minimum_price }) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const setValidate = (values) => {
+    return minimum_price ? validate(values, minimum_price) : validate(values);
+  }
 
   useEffect(() => {
     if (errorCount(errors) === 0 && isSubmitting) {
@@ -19,7 +23,7 @@ const useForm = ({ submit, validate, initialValues = {} }) => {
       event.preventDefault();
       setIsSubmitting(true);
       localStorage.setItem("create_item", JSON.stringify(values));
-      setErrors(validate(values));
+      setErrors(setValidate(values));
     }
   };
 
@@ -29,7 +33,7 @@ const useForm = ({ submit, validate, initialValues = {} }) => {
     const { name, value } = event.target;
     setValues(values => ({ ...values, [name]: value }));
 
-    const fieldError = validate({ [name]: value });
+    const fieldError = setValidate({ [name]: value });
     setErrors({ ...errors, [name]: fieldError[name] });
   };
 
