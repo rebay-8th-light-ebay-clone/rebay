@@ -4,7 +4,7 @@ import { convertPenniesToDollars } from 'utilities/price';
 import './BidCard.scss';
 
 const BidCard = ({ timestamp, bid_price, userName, white }) => (
-  <section className={`bid--container ${white && 'bid--container-white'}`}>
+  <section className={`bid--container ${white && 'bid--white'}`}>
     <div className='bid--container-info'>
       <h2>{userName} Bid</h2>
       <h5>{dateFormatter(timestamp)}</h5>

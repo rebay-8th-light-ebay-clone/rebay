@@ -10,24 +10,21 @@ const ItemBids = ({ item_uuid, apiHandler, handleError }) => {
       data ? setBids(data) : handleError(errors);
     }
     fetchBids();
-  }, [apiHandler, item_uuid]);
+  }, [apiHandler, item_uuid, handleError]);
 
-  const renderBids = (bidCollection) => {
-    return bidCollection.map(bid => {
-      return <BidCard white={true} key={bid.uuid} timestamp={bid.timestamp} bid_price={bid.bid_price} userName={"Anonymous"} />
-    })
-  }
-
-  if (bids.length > 0) {
-    return (
-      <>
-        <h2 className='header--secondary'>Bids</h2>
-        {renderBids(bids)}
-      </>
-    );
-  } else {
-    return null;
-  }
+  return bids.length > 0 && (
+    <>
+    <h2 className='header--secondary'>Bids</h2>
+    {bids.map(bid => {
+      return <BidCard 
+        white={true} 
+        key={bid.uuid} 
+        timestamp={bid.timestamp} 
+        bid_price={bid.bid_price}
+        userName={"Anonymous"} />
+    })}
+  </>
+  )
 }
 
 export default ItemBids;
