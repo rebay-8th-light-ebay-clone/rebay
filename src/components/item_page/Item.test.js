@@ -17,6 +17,7 @@ describe('Item Test', () => {
         "image": "test-image-url",
         "price": 10,
         "title": "test title",
+        "current_highest_bid": 20
       }
     }
   };
@@ -32,7 +33,7 @@ describe('Item Test', () => {
     component.getByAltText('test title')
     component.getByText('test description');
     component.getByText(/hr|This Auction Has Ended/);
-    component.getByText('Current Bid: $0.10');
+    component.getByText('$0.20');
     component.getByText('test title');
   })
 
@@ -40,7 +41,7 @@ describe('Item Test', () => {
     const error = {
       "data": {
         "errors": {
-          "invalid": "fetch"
+          "message": "Invalid fetch"
         }
       }
     };

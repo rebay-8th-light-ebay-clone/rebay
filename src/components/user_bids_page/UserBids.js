@@ -3,7 +3,6 @@ import UserBidCard from './UserBidCard';
 import ItemsPage from 'components/all_items_page/ItemsPage';
 import NoContent from 'components/UI/NoContent';
 import Error from 'components/UI/Error';
-import { formatErrorMessage } from 'utilities/formatErrorMessage';
 
 const UserBids = (props) => {
     const [itemBids, setItemBids] = useState(null);
@@ -13,8 +12,7 @@ const UserBids = (props) => {
     useEffect(() => {
         const fetchBids = async () => {
             const { data, errors } = await apiHandler.get(`/api/users/${match.params.uuid}/bids`);
-            console.log({ data, errors })
-            data ? setItemBids(data) : setError(formatErrorMessage(errors));
+            data ? setItemBids(data) : setError(errors);
         }
         fetchBids();
     }, [apiHandler, match.params.uuid]);

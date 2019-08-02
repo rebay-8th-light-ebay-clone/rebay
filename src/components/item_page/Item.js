@@ -3,7 +3,6 @@ import { ItemPage } from './ItemPage';
 import ItemBids from 'components/item_bids/ItemBids';
 import { dayEndedUTCString } from 'utilities/date';
 import { convertDollarsToPennies } from 'utilities/price';
-import { formatErrorMessage } from 'utilities/formatErrorMessage';
 
 const Item = (props) => {
   const [item, setItem] = useState({});
@@ -12,24 +11,19 @@ const Item = (props) => {
   const { uuid, user_uuid } = props.match.params;
 
   useEffect(() => {
+    const fetchItems = async () => {
+      const { data, errors } = await props.apiHandler.get(`/api/users/${user_uuid}/items/${uuid}`);
+      data ? setItem(data) : setError(errors);
+    }
     fetchItems();
   }, [props.apiHandler, uuid, user_uuid, refetch]);
-
-  const fetchItems = async () => {
-    const { data, errors } = await props.apiHandler.get(`/api/users/${user_uuid}/items/${uuid}`);
-    data ? setItem(data) : setError(formatErrorMessage(errors));
-  }
 
   const handleBidSubmit = async (values) => {
     const { data, errors } = await props.apiHandler.post(`/api/items/${uuid}/bids`, {
       bid_price: convertDollarsToPennies(values.price),
       timestamp: dayEndedUTCString(new Date())
     });
-    if (data) {
-      setRefetch(true)
-    } else {
-      setError(formatErrorMessage(errors))
-    }
+    data ? setRefetch(true) : setError(errors)
   }
 
   return (

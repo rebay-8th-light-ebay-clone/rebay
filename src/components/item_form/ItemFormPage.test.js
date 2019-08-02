@@ -45,10 +45,14 @@ describe("ItemFormPage for Update", () => {
 describe("ItemFormPage for Error", () => {
   afterEach(cleanup)
 
+  const error = {
+      "message": "You are not authorized"
+  };
+
   const submit = () => { }
   const formPageWithError = <ItemFormPage
     success={false}
-    errors={"You are not authorized"}
+    errors={error}
     pageTitle={"Create New Item Listing"}
     submit={submit}
   />;
@@ -56,7 +60,7 @@ describe("ItemFormPage for Error", () => {
   test("renders error", () => {
     const { getByText } = render(formPageWithError);
 
-    getByText("You are not authorized");
+    getByText(/You are not authorized/i);
   });
 
 })

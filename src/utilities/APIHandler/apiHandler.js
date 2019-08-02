@@ -7,7 +7,7 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response.data)
-        .catch(error => error.response.data);
+        .catch(error => this.formatError(error));
     }
 
     post = async (endpoint, data) => {
@@ -15,7 +15,7 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response.data)
-        .catch(error => error.response.data);
+        .catch(error => this.formatError(error));
     }
 
     put = async (endpoint, data) => {
@@ -23,7 +23,7 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response.data)
-        .catch(error => error.response.data);
+        .catch(error => this.formatError(error));
     }
 
     delete = async (endpoint) => {
@@ -31,7 +31,20 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response)
-        .catch(error => error.response.data);
+        .catch(error => this.formatError(error));
+    }
+
+    formatError = (error) => {
+        console.log(error.response);
+        if (error.response.data.errors) {
+            return error.response.data;
+        } else {
+            return {
+                errors: {
+                    [error.response.status]: error.response.statusText
+                }
+            }
+        }
     }
 }
 
