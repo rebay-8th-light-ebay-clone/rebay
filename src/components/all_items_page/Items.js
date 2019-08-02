@@ -8,8 +8,8 @@ const Items = ({ apiHandler }) => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const { data, error } = await apiHandler.get("/api/items");
-            data ? setItems(data) : setError(error);
+            const { data, errors } = await apiHandler.get("/api/items");
+            data ? setItems(data) : setError(errors);
         }
         fetchItems();
     }, [apiHandler]);

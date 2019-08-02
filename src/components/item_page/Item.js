@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { ItemPage } from './ItemPage';
 import ItemBids from 'components/item_bids/ItemBids';
+import { dayEndedUTCString } from 'utilities/date';
+import { convertDollarsToPennies } from 'utilities/price';
+import { formatErrorMessage } from 'utilities/formatErrorMessage';
 
 const Item = (props) => {
   const [item, setItem] = useState({});
   const [error, setError] = useState(null);
+  const [refetch, setRefetch] = useState(false);
+  const { uuid, user_uuid } = props.match.params;
 
   useEffect(() => {
-    const { uuid, user_uuid } = props.match.params;
-    const fetchItems = async () => {
-      const { data, error } = await props.apiHandler.get(`/api/users/${user_uuid}/items/${uuid}`);
-      data ? setItem(data) : setError(error);
-    }
     fetchItems();
-  }, [props.apiHandler, props.match.params]);
+  }, [props.apiHandler, uuid, user_uuid, refetch]);
 
-  const handleError = (err) => {
-    return err && `Error: ${err.message}`;
+  const fetchItems = async () => {
+    const { data, errors } = await props.apiHandler.get(`/api/users/${user_uuid}/items/${uuid}`);
+    data ? setItem(data) : setError(formatErrorMessage(errors));
   }
 
-  const handleBidSubmit = (values) => {
-    console.log(values)
+  const handleBidSubmit = async (values) => {
+    const { data, errors } = await props.apiHandler.post(`/api/items/${uuid}/bids`, {
+      bid_price: convertDollarsToPennies(values.price),
+      timestamp: dayEndedUTCString(new Date())
+    });
+    if (data) {
+      setRefetch(true)
+    } else {
+      setError(formatErrorMessage(errors))
+    }
   }
 
   return (
-    <ItemPage item={item} error={handleError(error)} handleBidSubmit={handleBidSubmit}>
+    <ItemPage item={item} error={error} handleBidSubmit={handleBidSubmit}>
       {
-        item.uuid && <ItemBids item_uuid={item.uuid} handleError={handleError} apiHandler={props.apiHandler} />
+        item.uuid && <ItemBids item_uuid={item.uuid} handleError={setError} apiHandler={props.apiHandler} fetchBids={refetch} />
       }
     </ItemPage>
   );

@@ -38,17 +38,17 @@ describe('Item Test', () => {
 
   test('handles error response', async () => {
     const error = {
-      "error": {
-        "message": "Invalid fetch"
+      "data": {
+        "errors": {
+          "invalid": "fetch"
+        }
       }
     };
     const apiHandler = new MockAPIHandler(error);
     const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { uuid: 1 } }} />)
-    const errorItem = await waitForElement(() =>
-      findByText("Error: Invalid fetch")
+    await waitForElement(() =>
+      findByText(/invalid fetch/i)
     )
-
-    expect(errorItem.innerHTML).toContain("Error: Invalid fetch")
   })
 
 })

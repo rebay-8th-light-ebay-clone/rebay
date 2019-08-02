@@ -8,6 +8,7 @@ const CreateItemPage = ({ apiHandler, match }) => {
   const { user_uuid } = match.params;
 
   const submit = async values => {
+    localStorage.setItem("create_item", JSON.stringify(values));
     const formattedValues = formatItemRequest(values);
     const userUUID = JSON.parse(localStorage.getItem("user")).uuid;
     if (userUUID === user_uuid) {

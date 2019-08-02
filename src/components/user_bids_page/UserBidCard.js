@@ -9,7 +9,7 @@ const UserBidCard = ({ item, bids }) => {
             <ItemCard item={item} showDescription={true} />
             <section className='user-bids--grid'>
                 {bids && bids.map(bid => {
-                    return <BidCard bid_price={bid.bid_price} timestamp={bid.timestamp} userName={"You"} />
+                    return <BidCard bid_price={bid.bid_price} timestamp={bid.timestamp} key={bid.uuid} userName={"You"} />
                 })}
             </section>
         </section>

@@ -37,8 +37,8 @@ const ItemBidForm = ({ minimum_price, auction_active, submit }) => {
                         </span>
                     )}
                     <button className="btn-primary" type="submit">
-                        Submit
-                </button>
+                        Submit Bid
+                    </button>
                 </form>
             </FormContainer>
         </section>

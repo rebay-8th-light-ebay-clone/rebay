@@ -7,7 +7,7 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response.data)
-        .catch(error => error);
+        .catch(error => error.response.data);
     }
 
     post = async (endpoint, data) => {
@@ -15,7 +15,7 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response.data)
-        .catch(error => error);
+        .catch(error => error.response.data);
     }
 
     put = async (endpoint, data) => {
@@ -23,7 +23,7 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response.data)
-        .catch(error => error);
+        .catch(error => error.response.data);
     }
 
     delete = async (endpoint) => {
@@ -31,7 +31,7 @@ class APIHandler {
             withCredentials: true
         })
         .then(response => response)
-        .catch(error => error);
+        .catch(error => error.response.data);
     }
 }
 

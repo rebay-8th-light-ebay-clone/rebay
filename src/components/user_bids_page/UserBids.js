@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import UserBidCard from './UserBidCard';
 import ItemsPage from 'components/all_items_page/ItemsPage';
 import NoContent from 'components/UI/NoContent';
+import Error from 'components/UI/Error';
+import { formatErrorMessage } from 'utilities/formatErrorMessage';
 
 const UserBids = (props) => {
     const [itemBids, setItemBids] = useState(null);
@@ -10,15 +12,12 @@ const UserBids = (props) => {
 
     useEffect(() => {
         const fetchBids = async () => {
-            const { data, error } = await apiHandler.get(`/api/users/${match.params.uuid}/bids`);
-            data ? setItemBids(data) : setError(error);
+            const { data, errors } = await apiHandler.get(`/api/users/${match.params.uuid}/bids`);
+            console.log({ data, errors })
+            data ? setItemBids(data) : setError(formatErrorMessage(errors));
         }
         fetchBids();
     }, [apiHandler, match.params.uuid]);
-
-    const handleError = (err) => {
-        return err && `Error: ${err.message}`;
-    }
 
     const renderBidCards = (itemBids) => {
         if (itemBids && itemBids.length > 0) {
@@ -36,7 +35,7 @@ const UserBids = (props) => {
 
     return (
         <ItemsPage title={'My Bids'}>
-            {handleError(error)}
+            {error && <Error message={error} />}
             {renderBidCards(itemBids)}
         </ItemsPage>
     )

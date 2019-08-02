@@ -50,8 +50,10 @@ describe('Items Test', () => {
 
     test('handles error response', async () => {
         const error = {
-            "error": {
-                "message": "Invalid fetch"
+            "data": {
+                "errors": {
+                    "message": "Invalid fetch"
+                }
             }
         };
         const apiHandler = new MockAPIHandler(error);
