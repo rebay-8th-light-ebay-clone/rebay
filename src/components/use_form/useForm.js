@@ -12,7 +12,8 @@ const useForm = ({ submit, validate, initialValues = {}, minimum_price }) => {
   useEffect(() => {
     if (errorCount(errors) === 0 && isSubmitting) {
       submit(values);
-    }
+    } 
+    setIsSubmitting(false)
   }, [values, errors, submit, isSubmitting]);
 
   const errorCount = errors =>
@@ -22,7 +23,6 @@ const useForm = ({ submit, validate, initialValues = {}, minimum_price }) => {
     if (event) {
       event.preventDefault();
       setIsSubmitting(true);
-      localStorage.setItem("create_item", JSON.stringify(values));
       setErrors(setValidate(values));
     }
   };
