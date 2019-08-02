@@ -3,8 +3,8 @@ import { dateFormatter } from 'utilities/date';
 import { convertPenniesToDollars } from 'utilities/price';
 import './BidCard.scss';
 
-const BidCard = ({ timestamp, bid_price, userName }) => (
-  <section className='bid--container'>
+const BidCard = ({ timestamp, bid_price, userName, white }) => (
+  <section className={`bid--container ${white && 'bid--container-white'}`}>
     <div className='bid--container-info'>
       <h2>{userName} Bid</h2>
       <h5>{dateFormatter(timestamp)}</h5>

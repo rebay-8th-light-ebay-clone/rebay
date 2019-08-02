@@ -1,5 +1,9 @@
 @import 'styles/_shared.scss';
 
+.bid--container-white {
+    background-color: white !important;
+}
+
 .bid--container {
     background-color: $theme-color--med-light;
     box-shadow: $box-shadow;

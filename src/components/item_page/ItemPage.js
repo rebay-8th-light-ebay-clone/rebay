@@ -4,7 +4,7 @@ import Page from '../UI/Page';
 import { timeRemainingFromNowMessage } from '../../utilities/date';
 import { convertPenniesToDollars } from 'utilities/price';
 
-export const ItemPage = ({ item, error }) => {
+export const ItemPage = ({ item, error, children }) => {
   const { title, description, price, end_date, image } = item;
   return (
     <Page>
@@ -25,6 +25,7 @@ export const ItemPage = ({ item, error }) => {
             <span>{description}</span><br />
           </div>
         </div>
+        {children}
       </section>
     </Page>
   );
