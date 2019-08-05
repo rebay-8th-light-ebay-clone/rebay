@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ItemPage } from './ItemPage';
+import ItemBids from 'components/item_bids/ItemBids';
 
 const Item = (props) => {
   const [item, setItem] = useState({});
@@ -20,7 +21,11 @@ const Item = (props) => {
   }
 
   return (
-    <ItemPage item={item} error={handleError(error)} />
+    <ItemPage item={item} error={handleError(error)}>
+      {
+        item.uuid && <ItemBids item_uuid={item.uuid} handleError={handleError} apiHandler={props.apiHandler} />
+      }
+    </ItemPage>
   );
 }
 
