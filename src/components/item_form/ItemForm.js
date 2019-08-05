@@ -1,7 +1,7 @@
 import React from "react";
 import useForm from "../use_form/useForm";
 
-const ItemForm = ({ submit, validate, initialValues = {} }) => {
+const ItemForm = ({ submit, validate, initialValues = {}, editing = false }) => {
   const { values, errors, handleChange, handleSubmit } = useForm({
     submit,
     validate,
@@ -66,6 +66,7 @@ const ItemForm = ({ submit, validate, initialValues = {} }) => {
           aria-describedby="price-error"
           value={values.price}
           onChange={handleChange}
+          disabled={editing}
         />
         {errors.price && (
           <span id="price-error" className="error">
@@ -107,6 +108,7 @@ const ItemForm = ({ submit, validate, initialValues = {} }) => {
           aria-describedby="date-error"
           value={values.date}
           onChange={handleChange}
+          disabled={editing}
           min={new Date().toISOString().split('T')[0]}
         />
         {errors.date && (

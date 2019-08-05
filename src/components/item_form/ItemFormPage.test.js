@@ -1,15 +1,88 @@
 import React from "react";
-import CreateItemPage from "./CreateItemPage";
+import ItemFormPage from "../item_form/ItemFormPage";
 import { cleanup, render, fireEvent } from "@testing-library/react";
 
-describe("CreateItemPage", () => {
-  afterEach(cleanup);
+describe("ItemFormPage for Update", () => {
+  afterEach(cleanup)
+
+  test("populates the form with the initial values", () => {
+    const submit = () => { }
+    const { getByLabelText, getByText } = render(<ItemFormPage
+      success={false}
+      errors={null}
+      editing={false}
+      pageTitle={"Update Item Listing"}
+      submit={submit}
+      initialValues={{
+        category: "other",
+        title: "test title",
+        description: "test description",
+        image: "http://test.foo",
+        price: "1.00",
+        date: "2020-08-01"
+      }}
+    />);
+
+    getByText("Update Item Listing");
+
+    const title = getByLabelText("Title");
+    expect(title.value).toBe("test title");
+
+    const description = getByLabelText("Description");
+    expect(description.value).toBe("test description");
+
+    const image = getByLabelText("Image URL");
+    expect(image.value).toBe("http://test.foo");
+
+    const price = getByLabelText("Starting Price (USD)");
+    expect(price.value).toBe("1.00");
+
+    const date = getByLabelText("Auction End Date");
+    expect(date.value).toBe("2020-08-01");
+  })
+})
+
+describe("ItemFormPage for Error", () => {
+  afterEach(cleanup)
+
+  const submit = () => { }
+  const formPageWithError = <ItemFormPage
+    success={false}
+    errors={"You are not authorized"}
+    pageTitle={"Create New Item Listing"}
+    submit={submit}
+  />;
+
+  test("renders error", () => {
+    const { getByText } = render(formPageWithError);
+
+    getByText("You are not authorized");
+  });
+
+})
+
+describe("ItemFormPage for Create", () => {
+  afterEach(cleanup)
+
+  const submit = () => { }
+  const itemFormPage = <ItemFormPage
+    success={false}
+    errors={null}
+    pageTitle={"Create New Item Listing"}
+    submit={submit}
+  />;
 
   const setup = labelText => {
-    const { ...utils } = render(<CreateItemPage match={{ params: { user_uuid: 2 } }} />);
+    const { ...utils } = render(itemFormPage);
     const input = utils.getByLabelText(labelText);
     return { input, ...utils };
   };
+
+  test("renders page title", () => {
+    const { getByText } = render(itemFormPage);
+
+    getByText("Create New Item Listing");
+  });
 
   test("renders error when title is empty", () => {
     const { input, getByText } = setup("Title");
@@ -88,12 +161,11 @@ describe("CreateItemPage", () => {
   });
 
   test("renders error when price is less than 1.00", () => {
-    const utils = render(<CreateItemPage match={{ params: { user_uuid: 2 } }} />);
-    const input = utils.getByLabelText("Starting Price (USD)");
+    const { input, getByText } = setup("Starting Price (USD)");
 
     fireEvent.change(input, { target: { value: "a" } });
 
-    utils.getByText("Price must be a number");
+    getByText("Price must be a number");
   });
 
   test("renders error when price is less than 1.00", () => {

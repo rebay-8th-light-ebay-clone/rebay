@@ -1,4 +1,4 @@
-const { format } = require('date-fns');
+const { format, parse } = require('date-fns');
 
 export function timeRemainingFromNowMessage(endDate) {
   return timeRemainingMessage(new Date(), endDate);
@@ -24,20 +24,13 @@ export function timeRemaining(startDate, endDate) {
 }
 
 export const dayEndedUTCString = date => {
-  let entered_date = new Date(date);
+  let entered_date = parse(date)
   const end_date = setDefaultTime(entered_date);
   return end_date.toISOString();
 }
 
 const setDefaultTime = date => {
-  const defaultEndHours = 23;
-  const defaultEndMinutes = 59;
-  const defaultEndSeconds = 59;
-
-  date.setHours(defaultEndHours);
-  date.setMinutes(defaultEndMinutes);
-  date.setSeconds(defaultEndSeconds);
-
+  date.setHours(23,59,59);
   return date;
 }
 
@@ -65,4 +58,12 @@ function _diffInMinutes(startDate, endDate) {
 
 export function dateFormatter(utc_datetime) {
   return format(new Date(utc_datetime), 'MMM MM, YYYY HH:mm A')
+}
+
+export function ISOStringToLocaleDate(utc_datetime) {
+  return format(parse(utc_datetime), 'YYYY-MM-DD')
+}
+
+export function ISOStringToLocaleTime(utc_datetime) {
+  return new Date(utc_datetime).toLocaleTimeString()
 }

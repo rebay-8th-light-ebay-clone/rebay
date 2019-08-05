@@ -17,6 +17,14 @@ class APIHandler {
         .then(response => response.data)
         .catch(error => error);
     }
+
+    put = async (endpoint, data) => {
+        return axios.put(API_URL + endpoint, data, {
+            withCredentials: true
+        })
+        .then(response => response.data)
+        .catch(error => error);
+    }
 }
 
 export default APIHandler;

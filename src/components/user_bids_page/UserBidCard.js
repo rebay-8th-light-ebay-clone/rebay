@@ -2,7 +2,7 @@ import React from 'react';
 import ItemCard from 'components/item_card/ItemCard';
 import './UserBidCard.scss';
 import { dateFormatter } from 'utilities/date';
-import { pennyToDollarConverter } from 'utilities/price';
+import { convertPenniesToDollars } from 'utilities/price';
 
 const UserBidCard = ({ item, bids }) => {
     return (
@@ -23,7 +23,7 @@ const UserBid = ({ timestamp, bid_price }) => (
             <h2>You Bid</h2>
             <h5>{dateFormatter(timestamp)}</h5>
         </div>
-        <h1 className='bid--container-price'>${pennyToDollarConverter(bid_price)}</h1>
+        <h1 className='bid--container-price'>${convertPenniesToDollars(bid_price)}</h1>
     </section>
 )
 

@@ -12,11 +12,13 @@ const BasicHeader = (props) => (
     </header>
 )
 
-const AuthenticatedHeader = ({ user, setUser }) => {
+const AuthenticatedHeader = ({ user, setUser, apiHandler }) => {
     const [dropdownVisible, toggleDropdown] = useState(false)
+
     const logOut = () => {
-        localStorage.removeItem("user")
-        localStorage.removeItem("token")
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        apiHandler.get(`/auth/signout`);
         setUser(null);
     }
 
@@ -24,8 +26,9 @@ const AuthenticatedHeader = ({ user, setUser }) => {
 
     return (
         <BasicHeader>
+            <a href={`/user/${user.uuid}/items`}>My Items</a>
             <a href={`/user/${user.uuid}/bids`}>My Bids</a>
-            <a href="/items/new">Sell</a>
+            <a href={`/users/${user.uuid}/items/new`}>Sell</a>
             <div className='avatar'>
                 <img className='avatar-img' alt="avatar" src={userAvatar} onClick={() => toggleDropdown(!dropdownVisible)} />
                 {
@@ -45,11 +48,11 @@ const UnauthenticatedHeader = () => (
     </BasicHeader>
 )
 
-const Header = ({ user }) => {
+const Header = ({ user, apiHandler }) => {
     const [authUser, setUser] = useState(user);
 
     return authUser
-        ? <AuthenticatedHeader user={authUser} setUser={setUser} />
+        ? <AuthenticatedHeader user={authUser} setUser={setUser} apiHandler={apiHandler} />
         : <UnauthenticatedHeader />
 }
 

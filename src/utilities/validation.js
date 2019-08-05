@@ -1,4 +1,4 @@
-import { pipe } from "../../utilities/functional";
+import { pipe } from "./functional";
 
 export const validate = values => {
   const errors = {};
