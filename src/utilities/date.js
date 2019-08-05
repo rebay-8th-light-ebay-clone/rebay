@@ -23,6 +23,11 @@ export function timeRemaining(startDate, endDate) {
   return [dayDifference, hourDifference, minuteDifference];
 }
 
+export const ISOString = date => {
+  let entered_date = parse(date)
+  return entered_date.toISOString();
+}
+
 export const dayEndedUTCString = date => {
   let entered_date = parse(date)
   const end_date = setDefaultTime(entered_date);

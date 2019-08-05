@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ItemPage } from './ItemPage';
 import ItemBids from 'components/item_bids/ItemBids';
-import { dayEndedUTCString } from 'utilities/date';
+import { ISOString } from 'utilities/date';
 import { convertDollarsToPennies } from 'utilities/price';
 
 const Item = (props) => {
@@ -21,7 +21,7 @@ const Item = (props) => {
   const handleBidSubmit = async (values) => {
     const { data, errors } = await props.apiHandler.post(`/api/items/${uuid}/bids`, {
       bid_price: convertDollarsToPennies(values.price),
-      timestamp: dayEndedUTCString(new Date())
+      timestamp: ISOString(new Date())
     });
     data ? setRefetch(true) : setError(errors)
   }
