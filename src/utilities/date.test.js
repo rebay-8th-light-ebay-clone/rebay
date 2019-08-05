@@ -2,7 +2,7 @@ import {
   dayEndedUTCString, 
   timeRemaining,
   timeRemainingMessage, 
-  dateFormatter, 
+  formatDate, 
   ISOStringToLocaleDate, 
   ISOStringToLocaleTime,
   dateHasPassed
@@ -100,5 +100,5 @@ describe('ISOStringToLocaleDate', () => {
 
 describe('date formatter', () => {
   const date = new Date("2019-07-17T16:53:52Z").toUTCString()
-  expect(dateFormatter(date)).toEqual("Jul 07, 2019 09:53 AM")
+  expect(formatDate(date)).toEqual("Jul 07, 2019 09:53 AM")
 })

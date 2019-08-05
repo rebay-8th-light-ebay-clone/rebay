@@ -8,7 +8,7 @@ import Error from 'components/UI/Error';
 
 export const ItemPage = ({ item, error, children, handleBidSubmit, success }) => {
   const { title, description, price, end_date, image, current_highest_bid } = item;
-  const currentPrice = current_highest_bid ? current_highest_bid : price;
+  const currentPrice = current_highest_bid || price;
   const minimumPrice = current_highest_bid ? current_highest_bid + 100 : price;
 
   return (

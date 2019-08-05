@@ -35,7 +35,7 @@ export const dayEndedUTCString = date => {
 }
 
 const setDefaultTime = date => {
-  date.setHours(23,59,59);
+  date.setHours(23, 59, 59);
   return date;
 }
 
@@ -61,7 +61,7 @@ function _diffInMinutes(startDate, endDate) {
   return Math.floor((secondsDiff - dayDiffInSeconds - hourDiffinSeconds) / 60);
 }
 
-export function dateFormatter(utc_datetime) {
+export function formatDate(utc_datetime) {
   return format(new Date(utc_datetime), 'MMM MM, YYYY HH:mm A')
 }
 
