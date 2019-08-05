@@ -109,6 +109,7 @@ const ItemForm = ({ submit, validate, initialValues = {}, editing = false }) => 
           value={values.date}
           onChange={handleChange}
           disabled={editing}
+          min={new Date().toISOString().split('T')[0]}
         />
         {errors.date && (
           <span id="date-error" className="error">
