@@ -6,7 +6,7 @@ import { convertPenniesToDollars } from 'utilities/price';
 import ItemBidForm from 'components/item_bids/ItemBidForm';
 import Error from 'components/UI/Error';
 
-export const ItemPage = ({ item, error, children, handleBidSubmit }) => {
+export const ItemPage = ({ item, error, children, handleBidSubmit, success }) => {
   const { title, description, price, end_date, image, current_highest_bid } = item;
   const currentPrice = current_highest_bid ? current_highest_bid : price;
   const minimumPrice = current_highest_bid ? current_highest_bid + 100 : price;
@@ -26,8 +26,13 @@ export const ItemPage = ({ item, error, children, handleBidSubmit }) => {
             <h4>{timeRemainingFromNowMessage(new Date(end_date))}</h4>
           </div>
           <div className="item-description">
-            <h4 id="description-header">Bid On This Item</h4>
-            <ItemBidForm submit={handleBidSubmit} minimum_price={convertPenniesToDollars(minimumPrice)} auction_active={!dateHasPassed(end_date)} />
+            {!dateHasPassed(end_date) && <h4 id="description-header">Bid On This Item</h4>}
+            <ItemBidForm 
+              submit={handleBidSubmit} 
+              minimum_price={convertPenniesToDollars(minimumPrice)} 
+              auction_active={!dateHasPassed(end_date)} 
+              success={success} 
+            />
           </div>
           <div className="item-description">
             <h4 id="description-header">Product Description</h4>

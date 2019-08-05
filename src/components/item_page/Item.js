@@ -23,11 +23,17 @@ const Item = (props) => {
       bid_price: convertDollarsToPennies(values.price),
       timestamp: ISOString(new Date())
     });
-    data ? setRefetch(true) : setError(errors)
+    if (data) {
+      setRefetch(true)
+      setError(false)
+    } else {
+      setRefetch(false)
+      setError(errors)
+    }
   }
 
   return (
-    <ItemPage item={item} error={error} handleBidSubmit={handleBidSubmit}>
+    <ItemPage item={item} error={error} handleBidSubmit={handleBidSubmit} success={refetch}>
       {
         item.uuid && <ItemBids item_uuid={item.uuid} handleError={setError} apiHandler={props.apiHandler} fetchBids={refetch} />
       }

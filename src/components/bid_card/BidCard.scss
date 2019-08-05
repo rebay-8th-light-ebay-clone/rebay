@@ -6,7 +6,9 @@
 
 .bid--winner {
     background-color: $success-green--light !important;
-    color: $success-green;
+    .bid--container-price {
+        color: $success-green !important;
+    }
 }
 
 .bid--container {

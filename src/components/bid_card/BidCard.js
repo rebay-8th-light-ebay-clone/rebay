@@ -5,7 +5,7 @@ import './BidCard.scss';
 
 const BidCard = ({ timestamp, bid_price, userName, white, winner }) => {
   const bidClass = () => {
-    if (white && winner) {
+    if (white && !winner) {
       return 'bid--white';
     } else if (winner) {
       return 'bid--winner';
