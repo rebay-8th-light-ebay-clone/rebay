@@ -8,7 +8,9 @@ import Error from 'components/UI/Error';
 
 export const ItemPage = ({ item, error, children, handleBidSubmit }) => {
   const { title, description, price, end_date, image, current_highest_bid } = item;
-  const minimumPrice = price === current_highest_bid ? price : current_highest_bid + 100;
+  const currentPrice = current_highest_bid ? current_highest_bid : price;
+  const minimumPrice = current_highest_bid ? current_highest_bid + 100 : price;
+
   return (
     <Page>
       { error && <Error message={error} />}
@@ -19,7 +21,7 @@ export const ItemPage = ({ item, error, children, handleBidSubmit }) => {
             <span><strong>{title}</strong></span>
           </div>
           <div className="item-bidding-info">
-            <h1>${convertPenniesToDollars(current_highest_bid)}</h1>
+            <h1>${convertPenniesToDollars(currentPrice)}</h1>
             <h3>Current Price</h3>
             <h4>{timeRemainingFromNowMessage(new Date(end_date))}</h4>
           </div>

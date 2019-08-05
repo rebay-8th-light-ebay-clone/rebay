@@ -7,21 +7,21 @@ import Error from 'components/UI/Error';
 const UserItems = (props) => {
     const [userItems, setUserItems] = useState(null);
     const [errors, setError] = useState(null);
+    const [refetch, setRefetch] = useState(false);
     const { apiHandler, match: { params: { uuid }} } = props;
-
-    const fetchBids = async () => {
-        const { data, errors } = await apiHandler.get(`/api/users/${uuid}/items`);
-        data ? setUserItems(data) : setError(errors);
-    }
     
     useEffect(() => {
+        const fetchBids = async () => {
+            const { data, errors } = await apiHandler.get(`/api/users/${uuid}/items`);
+            data ? setUserItems(data) : setError(errors);
+        }
         fetchBids();
-    }, [apiHandler, uuid]);
+    }, [apiHandler, uuid, refetch]);
 
     const onDelete = async (user_uuid, item_uuid) => {
         const { status, message } = await apiHandler.delete(`/api/users/${user_uuid}/items/${item_uuid}`)
         if (status) {
-            fetchBids()
+            setRefetch(true)
         } else {
             if (message.includes("401")) {
                 setError("You are not authorized to delete this item.")
