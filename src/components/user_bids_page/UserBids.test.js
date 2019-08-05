@@ -18,7 +18,8 @@ describe('User Bids Test', () => {
                         "id": 1,
                         "image": "test-image-url",
                         "price": 10,
-                        "title": "test title"
+                        "title": "test title",
+                        "current_highest_bid": 10
                     },
                     "bids": [
                         {

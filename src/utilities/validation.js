@@ -1,5 +1,14 @@
 import { pipe } from "./functional";
 
+export const bidPriceValidate = (values, minimum_price) => {
+  const errors = {};
+
+  return pipe(
+    validateBidPrice,
+    getErrors
+  )([values, errors, minimum_price]);
+}
+
 export const validate = values => {
   const errors = {};
 
@@ -32,6 +41,11 @@ const validateImage = ([values, errors]) => {
 const validatePrice = ([values, errors]) => {
   const { price } = values;
   return [values, { ...errors, price: priceError(price) }];
+};
+
+const validateBidPrice = ([values, errors, minimum_price]) => {
+  const { price } = values;
+  return [values, { ...errors, price: bidPriceError(price, minimum_price) }];
 };
 
 const validateCategory = ([values, errors]) => {
@@ -77,6 +91,19 @@ const priceError = price => {
     return "Price must be a number";
   } else if (price < 1) {
     return "Price must be at least 1.00";
+  } else {
+    return "";
+  }
+};
+
+
+const bidPriceError = (price, minimum_price) => {
+  if (isEmpty(price)) {
+    return "Price is required";
+  } else if (isNaN(price)) {
+    return "Price must be a number";
+  } else if (price < minimum_price) {
+    return `Price must be at least $${minimum_price}`;
   } else {
     return "";
   }

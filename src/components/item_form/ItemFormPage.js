@@ -27,7 +27,6 @@ const ItemFormPage = ({
   pageTitle,
   submit
 }) => {
-
   if (success) {
     const { user_uuid, uuid } = success;
     return <Redirect to={`/users/${user_uuid}/items/${uuid}`} />

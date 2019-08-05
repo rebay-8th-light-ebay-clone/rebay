@@ -1,5 +1,6 @@
 import React from "react";
 import useForm from "../use_form/useForm";
+import FormContainer from 'components/UI/FormContainer';
 
 const ItemForm = ({ submit, validate, initialValues = {}, editing = false }) => {
   const { values, errors, handleChange, handleSubmit } = useForm({
@@ -9,7 +10,7 @@ const ItemForm = ({ submit, validate, initialValues = {}, editing = false }) => 
   });
 
   return (
-    <section className="form-container">
+    <FormContainer>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input
@@ -121,7 +122,7 @@ const ItemForm = ({ submit, validate, initialValues = {}, editing = false }) => 
           Submit
         </button>
       </form>
-    </section>
+    </FormContainer>
   );
 };
 

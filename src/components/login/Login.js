@@ -3,19 +3,20 @@ import { Redirect } from 'react-router';
 import Page from 'components/UI/Page';
 import './Login.scss';
 import API_URL from 'utilities/apiEndpoint';
+import Error from 'components/UI/Error';
 
 const Login = (props) => {
-    const [error, setError] = useState(null)
+    const [errors, setError] = useState(null)
     const [success, setSuccess] = useState(false)
     useEffect(() => {
         const { uuid } = props.match.params;
         const fetchUser = async () => {
-            const { data, message } = await props.apiHandler.get(`/api/users/${uuid}`);
+            const { data, errors } = await props.apiHandler.get(`/api/users/${uuid}`);
             if (data) {
                 localStorage.setItem("user", JSON.stringify(data))
                 setSuccess(true)
             } else {
-                setError(message);
+                setError(errors);
             }
         }
         if (uuid) {
@@ -23,16 +24,12 @@ const Login = (props) => {
         }
     }, [props.match.params, props.apiHandler])
 
-    const handleError = (err) => {
-        return err && `Error: ${err.message}`;
-    }
-
     if (success) {
         return <Redirect to={props.history.go(-2)} />
     } else {
         return (
             <Page background={'theme'}>
-                {handleError(error)}
+                 { errors && <Error message={errors} />}
                 <section className='login--container'>
                     <h1>Log In</h1>
                     <a className='google-btn-link' href={`${API_URL}/auth/google?scope=email%20profile`}>

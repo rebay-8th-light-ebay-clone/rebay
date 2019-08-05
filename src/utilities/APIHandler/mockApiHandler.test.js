@@ -22,8 +22,10 @@ test('APIHandler can make a mock get call', async () => {
 
 test('APIHandler can handle a mock get call that returns an error', async () => {
     const error = {
-        "error": {
-            "message": "Invalid fetch"
+        "data": {
+            "errors": {
+                "message": "Invalid fetch"
+            }
         }
     };
     const apiHandler = new MockAPIHandler(error);
@@ -31,7 +33,7 @@ test('APIHandler can handle a mock get call that returns an error', async () => 
     const fetchResult = await apiHandler.get(url);
 
     expect.assertions(1);
-    expect(fetchResult).toEqual(error)
+    expect(fetchResult).toEqual(error.data)
 })
 
 test('APIHandler can make a mock post call', async () => {
@@ -77,16 +79,3 @@ test('APIHandler can make a mock put call', async () => {
     expect.assertions(1);
     expect(fetchResult).toEqual(itemData.data)
 })
-
-
-// Used to make sure Fetcher can make real calls. 
-// Should not be included in test suites as the axios endpoint is currently
-// dependent on local development url localhost:4000
-// test('APIHandler can make a real get call', async () => {
-//     const apiHandler = new APIHandler();
-//     const url = '/api/items';
-//     const fetchResult = await apiHandler.get(url);
-
-//     expect.assertions(1);
-//     expect(fetchResult).toHaveProperty('data')
-// })

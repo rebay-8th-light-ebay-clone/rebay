@@ -26,6 +26,7 @@ describe('Items Test', () => {
                         "image": "test-image-url",
                         "price": 10,
                         "title": "item",
+                        "current_highest_bid": 10
                     },
                     {
                         "category": "test category",
@@ -35,6 +36,7 @@ describe('Items Test', () => {
                         "image": "test-image-url",
                         "price": 20,
                         "title": "item",
+                        "current_highest_bid": 20
                     },
                 ]
             }
@@ -50,16 +52,16 @@ describe('Items Test', () => {
 
     test('handles error response', async () => {
         const error = {
-            "error": {
-                "message": "Invalid fetch"
+            "data": {
+                "errors": {
+                    "message": "Invalid fetch"
+                }
             }
         };
         const apiHandler = new MockAPIHandler(error);
         const { findByText } = render(<ItemsPage apiHandler={apiHandler} />)
-        const errorItem = await waitForElement(() =>
-            findByText("Error: Invalid fetch")
+        await waitForElement(() =>
+            findByText(/Invalid fetch/i)
         )
-
-        expect(errorItem.innerHTML).toContain("Error: Invalid fetch")
     })
 })

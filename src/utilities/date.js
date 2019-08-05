@@ -1,4 +1,4 @@
-const { format, parse } = require('date-fns');
+const { format, parse, isPast } = require('date-fns');
 
 export function timeRemainingFromNowMessage(endDate) {
   return timeRemainingMessage(new Date(), endDate);
@@ -66,4 +66,8 @@ export function ISOStringToLocaleDate(utc_datetime) {
 
 export function ISOStringToLocaleTime(utc_datetime) {
   return new Date(utc_datetime).toLocaleTimeString()
+}
+
+export function dateHasPassed(iso_string) {
+  return isPast(parse(iso_string));
 }

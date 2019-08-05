@@ -11,7 +11,6 @@ const UserItems = (props) => {
 
     const fetchBids = async () => {
         const { data, errors } = await apiHandler.get(`/api/users/${uuid}/items`);
-        console.log(data)
         data ? setUserItems(data) : setError(errors);
     }
     

@@ -17,6 +17,7 @@ describe('Item Test', () => {
         "image": "test-image-url",
         "price": 10,
         "title": "test title",
+        "current_highest_bid": 20
       }
     }
   };
@@ -32,23 +33,23 @@ describe('Item Test', () => {
     component.getByAltText('test title')
     component.getByText('test description');
     component.getByText(/hr|This Auction Has Ended/);
-    component.getByText('Current Bid: $0.10');
+    component.getByText('$0.20');
     component.getByText('test title');
   })
 
   test('handles error response', async () => {
     const error = {
-      "error": {
-        "message": "Invalid fetch"
+      "data": {
+        "errors": {
+          "message": "Invalid fetch"
+        }
       }
     };
     const apiHandler = new MockAPIHandler(error);
     const { findByText } = render(<Item apiHandler={apiHandler} match={{ params: { uuid: 1 } }} />)
-    const errorItem = await waitForElement(() =>
-      findByText("Error: Invalid fetch")
+    await waitForElement(() =>
+      findByText(/invalid fetch/i)
     )
-
-    expect(errorItem.innerHTML).toContain("Error: Invalid fetch")
   })
 
 })

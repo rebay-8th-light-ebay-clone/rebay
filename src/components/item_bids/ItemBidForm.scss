@@ -1,0 +1,23 @@
+@import 'styles/_shared.scss';
+
+.item-bid-form--container {
+    .form-container {
+        box-shadow: none;
+        max-width: 1000px;
+        justify-self: stretch;
+        margin-bottom: 0px;
+        margin: 0px;
+        padding: 0px;
+
+        input {
+            font-size: 20px;
+        }
+
+        p {
+            color: $dark-grey;
+            font-size: 14px;
+            margin: 0px;
+            margin-top: -15px;
+        }
+    }
+}

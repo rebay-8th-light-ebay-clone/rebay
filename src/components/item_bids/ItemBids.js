@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BidCard from "../bid_card/BidCard";
 
-const ItemBids = ({ item_uuid, apiHandler, handleError }) => {
+const ItemBids = ({ item_uuid, apiHandler, handleError, fetchBids }) => {
   const [bids, setBids] = useState([]);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ const ItemBids = ({ item_uuid, apiHandler, handleError }) => {
       data ? setBids(data) : handleError(errors);
     }
     fetchBids();
-  }, [apiHandler, item_uuid, handleError]);
+  }, [apiHandler, item_uuid, handleError, fetchBids]);
 
   return bids.length > 0 && (
     <>
