@@ -6,13 +6,13 @@ import { convertPenniesToDollars } from 'utilities/price';
 import ItemBidForm from 'components/item_bids/ItemBidForm';
 import Error from 'components/UI/Error';
 
-export const ItemPage = ({ item, error, children, handleBidSubmit, success }) => {
+export const ItemPage = ({ item, error, children, handleBidSubmit, success, loading }) => {
   const { title, description, price, end_date, image, current_highest_bid } = item;
   const currentPrice = current_highest_bid || price;
   const minimumPrice = current_highest_bid ? current_highest_bid + 100 : price;
 
   return (
-    <Page>
+    <Page loading={loading}>
       { error && <Error message={error} />}
       <section className="item--container">
         <img src={image} alt={title} />

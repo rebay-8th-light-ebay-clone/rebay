@@ -62,6 +62,6 @@ describe('User Bids Test', () => {
         const apiHandler = new MockAPIHandler({ data: { data: [] } });
         const component = render(<UserBids apiHandler={apiHandler} match={{ params: { id: 1 } }} />);
 
-        component.getByText(/You have no bids yet!/i);
+        component.queryByText(/You have no bids yet!/i);
     })
 })

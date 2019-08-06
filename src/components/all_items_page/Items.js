@@ -6,12 +6,15 @@ import Error from 'components/UI/Error';
 const Items = ({ apiHandler }) => {
     const [items, setItems] = useState([]);
     const [errors, setError] = useState(null);
+    const [loading, setLoader] = useState(false);
 
     useEffect(() => {
         const fetchItems = async () => {
             const { data, errors } = await apiHandler.get("/api/items");
             data ? setItems(data) : setError(errors);
+            setLoader(false)
         }
+        setLoader(true)
         fetchItems();
     }, [apiHandler]);
 
@@ -22,7 +25,7 @@ const Items = ({ apiHandler }) => {
     }
 
     return (
-        <ItemsPage title='Items Page'>
+        <ItemsPage loading={loading} title='Items Page'>
             { errors && <Error message={errors} />}
             {createItemComponents(items)}
         </ItemsPage>
