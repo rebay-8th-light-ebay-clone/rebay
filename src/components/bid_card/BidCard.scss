@@ -4,6 +4,13 @@
     background-color: white !important;
 }
 
+.bid--winner {
+    background-color: $success-green--light !important;
+    .bid--container-price {
+        color: $success-green !important;
+    }
+}
+
 .bid--container {
     background-color: $theme-color--med-light;
     box-shadow: $box-shadow;
@@ -47,6 +54,4 @@
         justify-self: start;
         margin: 30px 0px !important;
     }
-
-
 }

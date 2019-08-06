@@ -2,7 +2,7 @@ import {
   dayEndedUTCString, 
   timeRemaining,
   timeRemainingMessage, 
-  dateFormatter, 
+  formatDate, 
   ISOStringToLocaleDate, 
   ISOStringToLocaleTime,
   dateHasPassed
@@ -100,11 +100,5 @@ describe('ISOStringToLocaleDate', () => {
 
 describe('date formatter', () => {
   const date = new Date("2019-07-17T16:53:52Z").toUTCString()
-  expect(dateFormatter(date)).toEqual("Jul 07, 2019 09:53 AM")
+  expect(formatDate(date)).toEqual("Jul 07, 2019 09:53 AM")
 })
-
-
-// describe("check if ISOString date has already passed", () => {
-//   const ISOString = "2019-08-02T06:59:59.000Z";
-//   expect(dateHasPassed(ISOString)).toEqual(true);
-// })

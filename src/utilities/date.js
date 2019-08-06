@@ -23,6 +23,11 @@ export function timeRemaining(startDate, endDate) {
   return [dayDifference, hourDifference, minuteDifference];
 }
 
+export const ISOString = date => {
+  let entered_date = parse(date)
+  return entered_date.toISOString();
+}
+
 export const dayEndedUTCString = date => {
   let entered_date = parse(date)
   const end_date = setDefaultTime(entered_date);
@@ -30,7 +35,7 @@ export const dayEndedUTCString = date => {
 }
 
 const setDefaultTime = date => {
-  date.setHours(23,59,59);
+  date.setHours(23, 59, 59);
   return date;
 }
 
@@ -56,7 +61,7 @@ function _diffInMinutes(startDate, endDate) {
   return Math.floor((secondsDiff - dayDiffInSeconds - hourDiffinSeconds) / 60);
 }
 
-export function dateFormatter(utc_datetime) {
+export function formatDate(utc_datetime) {
   return format(new Date(utc_datetime), 'MMM MM, YYYY HH:mm A')
 }
 
