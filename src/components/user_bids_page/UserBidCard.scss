@@ -3,6 +3,19 @@
 .user-bid--container {
     .item--card-container {
         border-radius: 6px 6px 0px 0px;
+
+        h1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+    
+            min-height: 65px !important;
+            max-height: 65px !important;
+            text-overflow: ellipsis;
+            white-space: pre-line;
+            overflow: hidden !important;
+            margin-bottom: 70px !important;
+        }
     }
 
     .user-bids--grid {

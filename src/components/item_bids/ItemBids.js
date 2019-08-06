@@ -12,6 +12,10 @@ const ItemBids = ({ item_uuid, apiHandler, handleError, fetchBids }) => {
     fetchBids();
   }, [apiHandler, item_uuid, handleError, fetchBids]);
 
+  const bidUserName = (bid) => {
+    return bid.user_uuid === JSON.parse(localStorage.getItem("user")).uuid ? "You" : "Someone";
+  }
+
   return bids.length > 0 && (
     <>
       <h2 className='header--secondary'>Bids</h2>
@@ -21,7 +25,7 @@ const ItemBids = ({ item_uuid, apiHandler, handleError, fetchBids }) => {
           key={bid.uuid}
           timestamp={bid.timestamp}
           bid_price={bid.bid_price}
-          userName={"Anonymous"}
+          userName={bidUserName(bid)}
           winner={bid.winner} />
       })}
     </>

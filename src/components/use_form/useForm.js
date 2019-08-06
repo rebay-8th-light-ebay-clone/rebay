@@ -12,7 +12,7 @@ const useForm = ({ submit, validate, initialValues = {}, minimum_price }) => {
   useEffect(() => {
     if (errorCount(errors) === 0 && isSubmitting) {
       submit(values);
-    } 
+    }
     setIsSubmitting(false)
   }, [values, errors, submit, isSubmitting]);
 
@@ -37,11 +37,21 @@ const useForm = ({ submit, validate, initialValues = {}, minimum_price }) => {
     setErrors({ ...errors, [name]: fieldError[name] });
   };
 
+  const formHasErrors = (errors) => {
+    if (Object.keys(errors).length === 0) {
+      return false;
+    }
+    return Object.values(errors).every((value) => {
+      return value !== "";
+    })
+  }
+
   return {
     handleChange,
     handleSubmit,
     values,
-    errors
+    errors,
+    formHasErrors
   };
 };
 
