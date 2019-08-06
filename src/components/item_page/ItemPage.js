@@ -10,10 +10,17 @@ export const ItemPage = ({ item, error, children, handleBidSubmit, success, load
   const { title, description, price, end_date, image, current_highest_bid } = item;
   const currentPrice = current_highest_bid || price;
   const minimumPrice = current_highest_bid ? current_highest_bid + 100 : price;
-
+  const bidFormIsVisible = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || Object.keys(user).length === 0) {
+      return true;
+    } else {
+      return !dateHasPassed(end_date) && user.uuid !== item.user_uuid
+    }
+  }
   return (
     <Page loading={loading}>
-      { error && <Error message={error} />}
+      {error && <Error message={error} />}
       <section className="item--container">
         <img src={image} alt={title} />
         <div className={`item-info`}>
@@ -25,15 +32,17 @@ export const ItemPage = ({ item, error, children, handleBidSubmit, success, load
             <h3>Current Price</h3>
             <h4>{timeRemainingFromNowMessage(new Date(end_date))}</h4>
           </div>
-          <div className="item-description">
-            {!dateHasPassed(end_date) && <h4 id="description-header">Bid On This Item</h4>}
-            <ItemBidForm 
-              submit={handleBidSubmit} 
-              minimum_price={convertPenniesToDollars(minimumPrice)} 
-              auction_active={!dateHasPassed(end_date)} 
-              success={success} 
-            />
-          </div>
+          {bidFormIsVisible() && (
+            <div className="item-description">
+              <h4 id="description-header">Bid On This Item</h4>
+              <ItemBidForm
+                submit={handleBidSubmit}
+                minimum_price={convertPenniesToDollars(minimumPrice)}
+                success={success}
+                auction_active={bidFormIsVisible()}
+              />
+            </div>
+          )}
           <div className="item-description">
             <h4 id="description-header">Product Description</h4>
             <span>{description}</span><br />

@@ -4,10 +4,11 @@ import { bidPriceValidate } from "utilities/validation";
 import FormContainer from 'components/UI/FormContainer';
 import './ItemBidForm.scss';
 
-const ItemBidForm = ({ minimum_price, auction_active, submit, success }) => {
+const ItemBidForm = ({ minimum_price, submit, success, auction_active }) => {
     const initialValues = {
         price: minimum_price
     }
+
     const { values, errors, handleChange, handleSubmit, formHasErrors } = useForm({
         submit,
         validate: bidPriceValidate,
@@ -42,7 +43,7 @@ const ItemBidForm = ({ minimum_price, auction_active, submit, success }) => {
                     </button>
                 </form>
             </FormContainer>
-            { success && <h5>You've successfully bid on this item!</h5>}
+            {success && <h5>You've successfully bid on this item!</h5>}
         </section>
     )
 }

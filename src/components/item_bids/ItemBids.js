@@ -17,7 +17,12 @@ const ItemBids = ({ item_uuid, apiHandler, handleError, fetchBids }) => {
   }, [apiHandler, item_uuid, handleError, fetchBids]);
 
   const bidUserName = (bid) => {
-    return bid.user_uuid === JSON.parse(localStorage.getItem("user")).uuid ? "You" : "Someone";
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && bid.user_uuid === user.uuid) {
+      return "You";
+    } else {
+      return "Someone";
+    }
   }
 
   return bids.length > 0 && (
