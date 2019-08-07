@@ -13,7 +13,9 @@ export function timeRemainingMessage(startDate, endDate) {
   } else if (days === 0) {
     return `Ends in ${hours} hr ${minutes} min`;
   }
-  return `Ends in ${days} day ${hours} hr`;
+  const dayText = days > 1 ? "days" : "day";
+  const hourText = hours > 1 ? "hrs" : "hr";
+  return `Ends in ${days} ${dayText} ${hours} ${hourText}`;
 }
 
 export function timeRemaining(startDate, endDate) {
@@ -62,7 +64,10 @@ function _diffInMinutes(startDate, endDate) {
 }
 
 export function formatDate(utc_datetime) {
-  return format(new Date(utc_datetime), 'MMM MM, YYYY HH:mm A')
+  if (!utc_datetime.includes("Z")) {
+    utc_datetime += "Z";
+  }
+  return format(parse(utc_datetime), 'MMM DD, YYYY hh:mm A')
 }
 
 export function ISOStringToLocaleDate(utc_datetime) {

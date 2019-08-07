@@ -1,11 +1,10 @@
-import { 
-  dayEndedUTCString, 
+import {
+  dayEndedUTCString,
   timeRemaining,
-  timeRemainingMessage, 
-  formatDate, 
-  ISOStringToLocaleDate, 
+  timeRemainingMessage,
+  formatDate,
+  ISOStringToLocaleDate,
   ISOStringToLocaleTime,
-  dateHasPassed
 } from './date';
 
 describe('timeRemaining', () => {
@@ -46,6 +45,15 @@ describe('timeRemainingMessage', () => {
 
     expect(timeRemainingMessage(startDate, endDate)).toEqual(expectedMessage);
   });
+
+  test('it returns a string with plural days', () => {
+    const startDate = new Date("2019-07-16T15:53:52Z");
+    const endDate = new Date("2019-07-20T16:53:52Z");
+    const expectedMessage = "Ends in 4 days 1 hr";
+
+    expect(timeRemainingMessage(startDate, endDate)).toEqual(expectedMessage);
+  });
+
 
   test('it returns hours and minutes when there is under a day left', () => {
     const startDate = new Date("2019-07-17T12:22:52Z");
@@ -99,6 +107,11 @@ describe('ISOStringToLocaleDate', () => {
 
 
 describe('date formatter', () => {
-  const date = new Date("2019-07-17T16:53:52Z").toUTCString()
-  expect(formatDate(date)).toEqual("Jul 07, 2019 09:53 AM")
+  test("converts a string from backend", () => {
+    expect(formatDate("2019-07-17T16:53:52Z")).toEqual("Jul 17, 2019 09:53 AM")
+  })
+
+  test("converts a bid card string from backend", () => {
+    expect(formatDate("2019-08-05T20:48:12")).toEqual("Aug 05, 2019 01:48 PM")
+  })
 })

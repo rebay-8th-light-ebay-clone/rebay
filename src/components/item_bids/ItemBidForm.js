@@ -8,7 +8,7 @@ const ItemBidForm = ({ minimum_price, auction_active, submit, success }) => {
     const initialValues = {
         price: minimum_price
     }
-    const { values, errors, handleChange, handleSubmit } = useForm({
+    const { values, errors, handleChange, handleSubmit, formHasErrors } = useForm({
         submit,
         validate: bidPriceValidate,
         initialValues,
@@ -37,7 +37,7 @@ const ItemBidForm = ({ minimum_price, auction_active, submit, success }) => {
                             {errors.price}
                         </span>
                     )}
-                    <button className="btn-primary" type="submit">
+                    <button className="btn-primary" type="submit" disabled={formHasErrors(errors)}>
                         Submit Bid
                     </button>
                 </form>

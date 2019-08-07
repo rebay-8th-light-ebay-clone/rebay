@@ -3,7 +3,7 @@ import useForm from "../use_form/useForm";
 import FormContainer from 'components/UI/FormContainer';
 
 const ItemForm = ({ submit, validate, initialValues = {}, editing = false }) => {
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const { values, errors, handleChange, handleSubmit, formHasErrors } = useForm({
     submit,
     validate,
     initialValues
@@ -118,7 +118,7 @@ const ItemForm = ({ submit, validate, initialValues = {}, editing = false }) => 
           </span>
         )}
 
-        <button className="btn-primary" type="submit">
+        <button className="btn-primary" type="submit" disabled={formHasErrors(errors)}>
           Submit
         </button>
       </form>

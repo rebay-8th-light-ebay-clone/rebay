@@ -13,7 +13,6 @@ const BidCard = ({ timestamp, bid_price, userName, white, winner }) => {
   }
 
   const bidMessage = winner ? "Won" : "Bid";
-
   return (
     <section className={`bid--container ${bidClass()}`}>
       <div className='bid--container-info'>

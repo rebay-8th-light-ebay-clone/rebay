@@ -8,7 +8,7 @@ const Item = (props) => {
   const [item, setItem] = useState({});
   const [error, setError] = useState(null);
   const [refetch, setRefetch] = useState(false);
-  const [bidSuccess, setBidSuccess] = useState(false);
+  const [loading, setLoader] = useState(false);
   const { uuid, user_uuid } = props.match.params;
 
   useEffect(() => {
@@ -16,11 +16,14 @@ const Item = (props) => {
       const { data, errors } = await props.apiHandler.get(`/api/users/${user_uuid}/items/${uuid}`);
       data ? setItem(data) : setError(errors);
       setRefetch(false);
+      setLoader(false);
     }
+    setLoader(true);
     fetchItems();
   }, [props.apiHandler, uuid, user_uuid, refetch]);
 
   const handleBidSubmit = async (values) => {
+    setLoader(true);
     const { data, errors } = await props.apiHandler.post(`/api/items/${uuid}/bids`, {
       bid_price: convertDollarsToPennies(values.price),
       timestamp: ISOString(new Date())
@@ -28,16 +31,15 @@ const Item = (props) => {
     if (data) {
       setRefetch(true)
       setError(false)
-      setBidSuccess(true)
     } else {
       setRefetch(false)
       setError(errors)
-      setBidSuccess(false)
     }
+    setLoader(false);
   }
 
   return (
-    <ItemPage item={item} error={error} handleBidSubmit={handleBidSubmit} success={bidSuccess}>
+    <ItemPage loading={loading} item={item} error={error} handleBidSubmit={handleBidSubmit} success={refetch}>
       {
         item.uuid && <ItemBids item_uuid={item.uuid} handleError={setError} apiHandler={props.apiHandler} fetchBids={refetch} />
       }

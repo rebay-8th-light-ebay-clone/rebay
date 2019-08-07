@@ -7,13 +7,16 @@ import Error from 'components/UI/Error';
 const UserBids = (props) => {
     const [itemBids, setItemBids] = useState(null);
     const [error, setError] = useState(null);
+    const [loading, setLoader] = useState(false);
     const { apiHandler, match } = props;
 
     useEffect(() => {
         const fetchBids = async () => {
             const { data, errors } = await apiHandler.get(`/api/users/${match.params.uuid}/bids`);
             data ? setItemBids(data) : setError(errors);
+            setLoader(false)
         }
+        setLoader(true);
         fetchBids();
     }, [apiHandler, match.params.uuid]);
 
@@ -32,7 +35,7 @@ const UserBids = (props) => {
     }
 
     return (
-        <ItemsPage title={'My Bids'}>
+        <ItemsPage title={'My Bids'} loading={loading}>
             {error && <Error message={error} />}
             {renderBidCards(itemBids)}
         </ItemsPage>

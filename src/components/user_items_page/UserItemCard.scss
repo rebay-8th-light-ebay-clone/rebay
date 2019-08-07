@@ -4,6 +4,9 @@
     .item--card-container {
         border-radius: 6px 6px 0px 0px;
     }
+
+    min-width: 350px;
+    max-width: 33vw;
 }
 .item-controller--container {
     background-color: $theme-color--med-light;
