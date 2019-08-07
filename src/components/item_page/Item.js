@@ -24,8 +24,10 @@ const Item = (props) => {
 
   const handleBidSubmit = async (values) => {
     setLoader(true);
+    const { price, max_price } = values;
     const { data, errors } = await props.apiHandler.post(`/api/items/${uuid}/bids`, {
-      bid_price: convertDollarsToPennies(values.price),
+      max_bid_price: max_price ? convertDollarsToPennies(max_price) : null,
+      bid_price: convertDollarsToPennies(price),
       timestamp: ISOString(new Date())
     });
     if (data) {
@@ -39,7 +41,13 @@ const Item = (props) => {
   }
 
   return (
-    <ItemPage loading={loading} item={item} error={error} handleBidSubmit={handleBidSubmit} success={refetch}>
+    <ItemPage 
+      loading={loading} 
+      item={item} 
+      error={error} 
+      handleBidSubmit={handleBidSubmit} 
+      success={refetch}
+    >
       {
         item.uuid && <ItemBids item_uuid={item.uuid} handleError={setError} apiHandler={props.apiHandler} fetchBids={refetch} />
       }

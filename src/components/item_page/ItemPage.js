@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ItemPage.scss';
 import Page from '../UI/Page';
 import { timeRemainingFromNowMessage, dateHasPassed } from '../../utilities/date';
@@ -10,6 +10,8 @@ export const ItemPage = ({ item, error, children, handleBidSubmit, success, load
   const { title, description, price, end_date, image, current_highest_bid } = item;
   const currentPrice = current_highest_bid || price;
   const minimumPrice = current_highest_bid ? current_highest_bid + 100 : price;
+  const [autoBidMode, setAutoBidMode] = useState(false);
+
   const bidFormIsVisible = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || Object.keys(user).length === 0) {
@@ -18,6 +20,7 @@ export const ItemPage = ({ item, error, children, handleBidSubmit, success, load
       return !dateHasPassed(end_date) && user.uuid !== item.user_uuid
     }
   }
+
   return (
     <Page loading={loading}>
       {error && <Error message={error} />}
@@ -40,6 +43,8 @@ export const ItemPage = ({ item, error, children, handleBidSubmit, success, load
                 minimum_price={convertPenniesToDollars(minimumPrice)}
                 success={success}
                 auction_active={bidFormIsVisible()}
+                setAutoBidMode={setAutoBidMode}
+                auto_bid={autoBidMode}
               />
             </div>
           )}

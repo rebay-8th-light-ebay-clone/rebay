@@ -41,9 +41,10 @@ const useForm = ({ submit, validate, initialValues = {}, minimum_price }) => {
     if (Object.keys(errors).length === 0) {
       return false;
     }
-    return Object.values(errors).every((value) => {
+    const hasErrors = Object.values(errors).some(value => {
       return value !== "";
     })
+    return hasErrors
   }
 
   return {

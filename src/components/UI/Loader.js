@@ -3,7 +3,7 @@ import './Loader.scss';
 
 const Loader = () => (
     <div className='loader'>
-       <i class="fas fa-circle-notch"></i>
+       <i className="fas fa-circle-notch"></i>
     </div>
 )
 
