@@ -1,7 +1,6 @@
 import React from 'react';
 import UserBidCard from './UserBidCard';
 import { cleanup, render, waitForElement } from '@testing-library/react';
-import MockAPIHandler from 'utilities/APIHandler/mockApiHandler';
 
 describe('User Bids Card Test', () => {
     afterEach(() => {
@@ -48,7 +47,7 @@ describe('User Bids Card Test', () => {
         }
     ]
 
-    test('renders an item with the correct data', async () => {
+    test('renders the correct numbre of bids', async () => {
         const component = render(<UserBidCard item={item} bids={bids} />);
 
         await waitForElement(() =>

@@ -49,6 +49,9 @@
           background-color: $pale-grey;
           cursor: not-allowed;
         }
+        &::placeholder {
+          color: $grey;
+        }
       }
   
       textarea {

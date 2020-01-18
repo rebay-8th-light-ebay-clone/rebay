@@ -1,10 +1,21 @@
 import { pipe } from "./functional";
+import { convertPenniesToDollars, convertDollarsToPennies } from 'utilities/price';
 
 export const bidPriceValidate = (values, minimum_price) => {
   const errors = {};
 
   return pipe(
     validateBidPrice,
+    getErrors
+  )([values, errors, minimum_price]);
+}
+
+export const autoBidPriceValidate = (values, minimum_price) => {
+  const errors = {};
+
+  return pipe(
+    validateBidPrice,
+    validateMaxBidPrice,
     getErrors
   )([values, errors, minimum_price]);
 }
@@ -46,6 +57,11 @@ const validatePrice = ([values, errors]) => {
 const validateBidPrice = ([values, errors, minimum_price]) => {
   const { price } = values;
   return [values, { ...errors, price: bidPriceError(price, minimum_price) }];
+};
+
+const validateMaxBidPrice = ([values, errors]) => {
+  const { max_price, price } = values;
+  return [values, { ...errors, max_price: maxBidPriceError(max_price, price) }];
 };
 
 const validateCategory = ([values, errors]) => {
@@ -104,6 +120,21 @@ const bidPriceError = (price, minimum_price) => {
     return "Price must be a number";
   } else if (price < minimum_price) {
     return `Price must be at least $${minimum_price}`;
+  } else {
+    return "";
+  }
+};
+
+const maxBidPriceError = (max_price, price) => {
+  const priceInPennies = convertDollarsToPennies(price);
+  const maxPriceInPennies = convertDollarsToPennies(max_price)
+  if (isEmpty(max_price)) {
+    return "Price is required";
+  } else if (isNaN(max_price)) {
+    return "Price must be a number";
+  } else if (maxPriceInPennies <= priceInPennies) {
+    const minimumMaxBid = convertPenniesToDollars(priceInPennies + 100);
+    return `Price must be at least $${minimumMaxBid}`;
   } else {
     return "";
   }

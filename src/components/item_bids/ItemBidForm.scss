@@ -11,13 +11,14 @@
 
         input {
             font-size: 20px;
+            margin-bottom: 15px;
         }
 
         p {
             color: $dark-grey;
             font-size: 14px;
             margin: 0px;
-            margin-top: -15px;
+            margin-top: -10px;
         }
     }
 
@@ -26,4 +27,36 @@
         text-align: center;
         background-color: $success-green--light;
     }
+}
+
+.bid-switch--controller {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: stretch;
+    align-items: start;
+    grid-gap: 10px;
+    margin-bottom: 30px;
+
+    button {
+        padding: 6px;
+        cursor: pointer;
+        border: 1px solid $light-grey;
+        box-shadow: $box-shadow;
+        background-color: $pale-grey;
+        font-weight: 500;
+        color: $dark-grey;
+    }
+
+    .btn-focused {
+        border: 1px solid $theme-color--med-light;
+        background-color: $theme-color--med-light;
+        color: $darker-grey;
+        font-weight: 600;
+    }
+}
+
+.auto-bid--instructions {
+    margin-top: 10px !important;
+    font-size: 16px !important;
 }
